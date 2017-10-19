@@ -10,7 +10,7 @@ class Section extends React.Component {
           <div className="col col-ad">
             <div className="ad">
               <h1>
-                An smart path to<br />
+                A smart path to<br />
                 trustful currencies
                 conversions
               </h1>
