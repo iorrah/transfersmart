@@ -4,7 +4,9 @@ import './Footer.css';
 class Footer extends React.Component {
   render() {
     return (
-      <footer></footer>
+      <footer>
+        © 2017 Copyright TransferSmart
+      </footer>
     );
   }
 }
