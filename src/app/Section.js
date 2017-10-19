@@ -1,18 +1,8 @@
 import React from 'react';
-import AmountEntry from './AmountEntry';
+import Conversor from './Conversor';
 import './Section.css';
 
 class Section extends React.Component {
-  renderAmountEntry(actionType) {
-    let action = (actionType === 'send' ?
-      'You send' :
-      'Their get');
-
-    return (
-      <AmountEntry action={action} />
-    )
-  }
-
   render() {
     return (
       <section>
@@ -41,8 +31,7 @@ class Section extends React.Component {
 
           <div className="col col-feature">
             <div className="feature">
-              {this.renderAmountEntry('send')}
-              {this.renderAmountEntry('get')}
+              <Conversor />
             </div>
           </div>
         </div>

@@ -2,20 +2,26 @@ import React from 'react';
 import './AmountEntry.css';
 
 class AmountEntry extends React.Component {
+  onChange() {
+    return;
+  }
+
   render() {
-    let action = this.props.action;
+    let desc = this.props.setup.desc;
+    let selected = this.props.setup.selected;
+    let isLocked = this.props.setup.is_locked;
+    let { rates } = this.props;
 
     return (
       <div className="amount-entry">
-        <p>{action}</p>
+        <p>{desc}</p>
 
-        <input type="text" value="1000" />
+        <input type="text" onChange={this.onChange} value="1000" />
 
-        <select>
-          <option>EUR</option>
-          <option>EUR</option>
-          <option>EUR</option>
-          <option>EUR</option>
+        <select value={selected} disabled={isLocked && 'disabled'}>
+          {rates.map(function(item, index) {
+            return <option key={index}>{item.currency}</option>
+          })}
         </select>
       </div>
     );
