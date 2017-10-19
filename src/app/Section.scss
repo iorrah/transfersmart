@@ -1,0 +1,103 @@
+section {
+  background: #6441A5;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #2a0845, #6441A5);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #2a0845, #6441A5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  padding: 5rem 0;
+
+  .row {
+    .col {
+      display: block;
+      float: left;
+      width: 50%;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+  }
+
+  h1,
+  p {
+    color: #dfdee2;
+  }
+
+  a {
+    color: #fff;
+
+    &,
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  .col-ad {
+    a {
+      font-size: .75rem;
+      padding: .8rem 1rem;
+      border-radius: .16rem;
+      background-color: rgba(0, 0, 0, .55);
+      transition: background-color .45s;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, .45);
+      }
+
+      .chevron {
+        font-size: 1.8rem;
+        font-weight: 100;
+        line-height: 0;
+        font-family: monospace;
+        position: relative;
+        top: .2rem;
+        left: .1rem;
+      }
+    }
+
+    h1 {
+      font-weight: 900;
+      font-size: 2.6rem;
+      margin: 0 0 1.8rem;
+    }
+
+    p {
+      font-weight: 600;
+      font-size: .9rem;
+      margin: 0 0 2.2rem;
+    }
+
+    .ad {
+      width: 90%;
+      padding: 4rem 3rem;
+    }
+  }
+
+  .col-feature {
+    .feature {
+      padding: 5rem 3rem;
+      width: 80%;
+      float: right;
+    }
+  }
+}
+
+@media (min-width: 0) and (max-width: 968px) {
+  section {
+    height: auto;
+
+    .row {
+      .col {
+        width: 100%;
+
+        &:first-child {
+          margin: 0 0 1rem;
+        }
+
+        .feature {
+          padding-top: 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,29 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body,
+#root,
+.app,
+section {
+  height: 100%;
+  min-height: 30rem;
+}
+
+@media (min-width: 0) and (max-width: 968px) {
+  html,
+  body,
+  #root,
+  .app,
+  section {
+    height: auto !important;
+    overflow: auto;
+  }
+}
