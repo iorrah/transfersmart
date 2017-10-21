@@ -105,3 +105,9 @@ footer {
                 0 -2px 4px rgba(0, 0, 0, 0.28);
   }
 }
+
+@media (min-width: 0) and (max-width: 968px) {
+  footer {
+    position: static;
+  }
+}

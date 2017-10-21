@@ -13,7 +13,7 @@ class Ad extends React.Component {
         <div className="quotation">
           <p className="quote">&ldquo;</p>
 
-          <p>
+          <p className="phrase">
             Because we possess
             the quality of being
             trustworthy and

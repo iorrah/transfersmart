@@ -103,3 +103,9 @@
     }
   }
 }
+
+@media (min-width: 0) and (max-width: 968px) {
+  .amount-entry {
+    margin: 0 0 2rem;
+  }
+}

@@ -74,17 +74,39 @@ section {
 @media (min-width: 0) and (max-width: 968px) {
   section {
     height: auto;
+    padding: 3rem 0 23rem;
 
     .row {
       .col {
         width: 100%;
 
-        &:first-child {
-          margin: 0 0 1rem;
+        &.col-ad {
+          margin: 0 0 3.5rem;
+        }
+
+        .ad {
+          padding-left: 0;
+          padding-right: 0;
+
+          h1 {
+            font-size: 2rem;
+          }
+
+          p {
+            &.quote {
+              font-size: 6rem;
+              line-height: .7rem;
+              top: -.1rem;
+            }
+
+            &.phrase {
+              font-size: 1.2rem;
+            }
+          }
         }
 
         .feature {
-          padding-top: 0;
+          padding: 0;
           width: 100%;
         }
       }
@@ -92,3 +114,27 @@ section {
   }
 }
 
+@media (min-width: 0) and (max-width: 414px) {
+  section {
+    padding: 3rem 0;
+
+    .col-ad {
+      margin: 0 0 1rem;
+    }
+
+    .ad {
+      h1 {
+        margin: 0;
+        text-align: center;
+      }
+
+      .quotation {
+        display: none;
+      }
+    }
+
+    .col.col-feature .feature {
+      padding: 0 0 5rem;
+    }
+  }
+}

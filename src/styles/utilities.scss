@@ -4,3 +4,9 @@
 }
 
 .roboto { font-family: Roboto; }
+
+@media (min-width: 0) and (max-width: 968px) {
+  .wrapper {
+    width: calc(100% - 2rem);
+  }
+}

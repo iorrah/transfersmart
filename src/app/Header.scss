@@ -81,6 +81,7 @@ header {
 @media (min-width: 0) and (max-width: 968px) {
   header {
     height: auto;
+    position: absolute;
 
     ul li {
       display: none;
