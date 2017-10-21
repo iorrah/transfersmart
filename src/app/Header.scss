@@ -2,10 +2,12 @@ header {
   color: #fff;
   position: fixed;
   top: 0;
-  background-color: rgba(0, 0, 0, .45);
+  background-color: #200d43;
   width: 100%;
-  padding: 1rem;
+  padding: 1.5rem 0;
   z-index: 1;
+  box-shadow: 0 0 2px rgba(0,0,0,.14),
+              0 2px 4px rgba(0,0,0,.28);
 
   h1,
   ul,
@@ -37,7 +39,7 @@ header {
     float: right;
 
     li {
-      margin: 0 .9rem 0 0;
+      margin: 0 .3rem 0 0;
       padding: 0;
       display: inline-block;
       list-style: none;
@@ -47,21 +49,29 @@ header {
       }
 
       &.highlight a {
-        background-color: #3b1879;
+        background: linear-gradient(40deg,#521cb3, #2f1361);
+        background: #521cb3;
+        background: -webkit-linear-gradient(to bottom, #521cb3, #2f1361);
+        background: linear-gradient(to bottom, #521cb3, #2f1361);
+        margin-left: .75rem;
 
         &:hover {
-          background-color: #361459;
+          background: linear-gradient(40deg,#5c1dce, #321567);
+          background: #5c1dce;
+          background: -webkit-linear-gradient(to bottom, #5c1dce, #321567);
+          background: linear-gradient(to bottom, #5c1dce, #321567);
         }
       }
 
       a {
-        font-size: .75rem;
+        font-size: .9rem;
+        font-weight: 900;
         padding: .8rem 1rem;
-        transition: background-color .45s;
+        transition: all .3s;
         border-radius: .16rem;
 
         &:hover {
-          background-color: rgba(0, 0, 0, .35);
+          background-color: #3b1879;
         }
       }
     }

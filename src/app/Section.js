@@ -6,26 +6,29 @@ class Section extends React.Component {
   render() {
     return (
       <section>
-        <div className="row">
+        <div className="row wrapper">
           <div className="col col-ad">
             <div className="ad">
               <h1>
-                A smart path to<br />
+                The smart path to
                 trustful currencies
                 conversions
               </h1>
 
+              <p className="quote">&ldquo;</p>
+
               <p>
-                We convert your currencies
-                using data <br />
-                that you can feel
-                safe to rely on.
+                Because we possess
+                the quality of being
+                trustworthy and
+                performing
+                consistently
+                well<span className="roboto">&rdquo;</span>
               </p>
 
-              <a href="/">
-                Find out more about us
-                <span className="chevron">&rsaquo;</span>
-              </a>
+              <p className="author">
+                &ndash; John Doe
+              </p>
             </div>
           </div>
 

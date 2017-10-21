@@ -1,4 +1,6 @@
 import React from 'react';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 import './AmountEntry.css';
 
 class AmountEntry extends React.Component {
@@ -39,6 +41,14 @@ class AmountEntry extends React.Component {
     */
   }
 
+  onChangeAmount(e) {
+    debugger;
+  }
+
+  onChangeCurrency(value) {
+    debugger;
+  }
+
   render() {
     let { selected } = this.props;
 
@@ -49,7 +59,13 @@ class AmountEntry extends React.Component {
     let { amount, currency } = selected;
     const { desc, mode } = selected.setup;
     const isLocked = selected.setup.is_locked;
-    const { rates } = this.props;
+
+    const options = this.props.rates.map((e) => {
+      return {
+        label: e.currency,
+        value: e.currency
+      }
+    });
 
     return (
       <div className="amount-entry">
@@ -59,22 +75,14 @@ class AmountEntry extends React.Component {
           type="text"
           name={`amount-${mode}`}
           value={amount}
-          onChange={this.onChange} />
+          onChange={this.onChangeAmount} />
 
-        <select
-          value={currency}
+        <Select
           name={`currency-${mode}`}
-          disabled={isLocked && 'disabled'}
-          onChange={this.onChange}>
-
-          {rates.map((item) => {
-            return (
-              <option key={item.currency} value={item.currency}>
-                {item.currency}
-              </option>
-            );
-          })}
-        </select>
+          value={currency}
+          options={options}
+          onChange={this.onChangeCurrency}
+        />
       </div>
     );
   }

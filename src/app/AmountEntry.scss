@@ -31,16 +31,75 @@
     float: left;
   }
 
-  select {
+  .Select {
+    background-color: transparent;
+    color: #fff;
+    position: relative;
     display: block;
-    float: left;
     width: 35%;
-    padding: 1.27rem 1rem;
-    font-size: 1rem;
-    border-radius: .12rem;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
     border: 0;
-    outline: 0;
+    padding: 0;
+    float: left;
+
+    &.has-value.is-pseudo-focused.Select--single {
+      .Select-control .Select-value {
+        .Select-value-label { color: #fff; }
+      }
+    }
+
+    .Select-control {
+      background-color: transparent;
+      border-radius: .12rem;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border: 0;
+      outline: 0;
+      color: #fff;
+
+      &,
+      &:hover,
+      &:focus {
+        color: #fff;
+
+        .Select-value {
+          background-color: #200d43;
+          border: 0;
+          font-size: 1.2rem;
+          font-weight: 600;
+          padding-top: .8rem;
+          padding-left: 1.2rem;
+          color: #fff;
+
+          &,
+          &:hover,
+          &:focus {
+            color: #fff;
+
+            .Select-value-label { color: #fff; }
+          }
+        }
+      }
+    }
+
+    .Select-input {
+      height: 3.75rem
+    }
+
+    .Select-clear {
+      color: #fff;
+    }
+
+    .Select-arrow-zone .Select-arrow {
+      border-top-color: #fff;
+      top: -.2rem;
+    }
+
+    &.is-open {
+      .Select-arrow-zone .Select-arrow {
+        border-top-color: #fff;
+        border-bottom-color: #fff;
+        top: -.3rem;
+      }
+    }
   }
 }
