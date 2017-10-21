@@ -22,7 +22,7 @@ class Section extends React.Component {
                 safe to rely on.
               </p>
 
-              <a href="#">
+              <a href="/">
                 Find out more about us
                 <span className="chevron">&rsaquo;</span>
               </a>

@@ -8,9 +8,9 @@ const API = {
   host: 'https://txf-ecb.glitch.me',
   path: 'rates',
   url() {
-    return this.host + '/' + this.path;
-  }
-}
+    return `${this.host}/${this.path}`;
+  },
+};
 
 class Conversor extends React.Component {
   constructor(props) {
@@ -18,81 +18,148 @@ class Conversor extends React.Component {
 
     this.state = {
       rates: [],
-      from: {},
-      to: {},
+      from: {
+        amount: 0,
+        currency: '',
+        rate: '',
+      },
+      to: {
+        amount: 0,
+        currency: '',
+        rate: '',
+      },
     };
   }
 
   fetchData() {
     /*
       The API does not seem to be working
-      at present but this methos was supposed
+      at present but this method was supposed
       to fetch the needed data and set it to
       our state properties.
     */
 
-    fetch(API.url())
-      .then(function(response) { response.json(); })
-      .then(function(data) {
+    // fetch(API.url())
+    //   .then((response) => { response.json(); })
+    //   .then(function (data) {
+    //     const rates = data.rates;
+    //     const from = { currency: data.base, rate: 0 };
+    //     const to = rates[0];
+    //     rates.push(to);
 
-        let rates = data.rates;
-        let from = { currency: data.base, rate: 0 };
-        let to = rates[0];
-        rates.push(to);
+    //     this.setState({ rates });
+    //     this.setState({ from });
+    //     this.setState({ to });
+    //   });
 
-        this.setState({ rates });
-        this.setState({ from });
-        this.setState({ to });
+    /*
+
+      Must handle any errors that hapen
+      in the process:
+
+      .catch(e) {
+        this.errors.push(error);
+      }
+
+    */
+
+    return fetch(API.url())
+      .then((response) => { response.json(); })
+      .then(function (data) {
+        return data;
       });
   }
 
+  fetchMockData() {
+    let resolve = (data) => {
+      return data;
+    };
+
+    let reject = (desc) => {
+      console.error('Error: ' + desc);
+    };
+
+    return new Promise((resolve, reject) => {
+      setTimeout(function() {
+        if (Mock.base) {
+          return resolve(Mock);
+        } else {
+          return reject('things went badly');
+        }
+      }, 1000);
+    });
+  }
+
+  setInitialState(promise) {
+    // promise.then(function(data) {
+    //   debugger;
+    // }.bind(this));
+
+    promise.then(function(data) {
+      let from = {
+        currency: data.base,
+        rate: 1,
+      };
+
+      let rates = data.rates;
+      rates.push(Object.assign({}, from));
+
+      from.amount = 1;
+      let to = Object.assign({}, rates[0]);
+      to.amount = (from.amount * to.rate);
+
+      this.setState({ rates, from, to });
+    }.bind(this));
+  }
+
   componentDidMount() {
-    let rates = Mock.rates;
-    let from = { currency: Mock.base };
-    let to = rates[0];
-
-    this.setState({ rates });
-    this.setState({ from });
-    this.setState({ to });
+    this.setInitialState(this.fetchMockData());
   }
 
-  buildEntrySetupSend() {
-    let to = this.state.to;
+  buildEntrySetupFrom() {
+    const from = this.state.from;
 
     return {
-      desc: 'You send',
+      desc: 'You wanto to convert:',
       is_locked: true,
-      selected: to
-    }
+      selected: from,
+      mode: 'from',
+    };
   }
 
-  buildEntrySetupGet() {
-    let from = this.state.from;
+  buildEntrySetupTo() {
+    const to = this.state.to;
 
     return {
-      desc: 'Their get',
+      desc: 'To this currency:',
       is_locked: false,
-      selected: from
-    }
+      selected: to,
+      mode: 'to',
+    };
+  }
+
+  onChange(setup) {
+    debugger
   }
 
   renderAmountEntry(mode) {
-    let method = 'buildEntrySetup' + capitalize(mode);
-    let setup = this[method]();
+    // const method = `buildEntrySetup${capitalize(mode)}`;
+    // const setup = this[method]();
 
-    return (
-      <AmountEntry
-        setup={setup}
-        rates={this.state.rates}
-      />
-    )
+    // return (
+    //   <AmountEntry
+    //     setup={setup}
+    //     rates={this.state.rates}
+    //     onChange={this.onChange}
+    //   />
+    // );
   }
 
   render() {
     return (
       <div className="conversor">
-        {this.renderAmountEntry('send')}
-        {this.renderAmountEntry('get')}
+        {this.renderAmountEntry('from')}
+        {this.renderAmountEntry('to')}
       </div>
     );
   }

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const Mock = {
   "base": "EUR",
   "rates": [
