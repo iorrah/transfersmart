@@ -1,5 +1,6 @@
 import React from 'react';
 import './Footer.css';
+import { FaFacebook, FaTwitter, FaLinkedin, FaSquare } from 'react-icons/lib/fa';
 
 class Footer extends React.Component {
   render() {
@@ -33,29 +34,32 @@ class Footer extends React.Component {
           <ul className="social">
             <li>
               <a href="/">
-                <i className="fa fa-twitter">
-                  Twitter
-                </i>
+                <span className="fa-stack">
+                  <FaSquare />
+                  <FaFacebook />
+                </span>
               </a>
             </li>
 
-            <li><span>&bull;</span></li>
+            <li><span></span></li>
 
             <li>
               <a href="/">
-                <i className="fa fa-facebook">
-                  Facebook
-                </i>
+                <span className="fa-stack">
+                  <FaSquare />
+                  <FaTwitter />
+                </span>
               </a>
             </li>
 
-            <li><span>&bull;</span></li>
+            <li><span></span></li>
 
             <li>
               <a href="/">
-                <i className="fa fa-linkedin">
-                  LinkedIn
-                </i>
+                <span className="fa-stack">
+                  <FaSquare />
+                  <FaLinkedin />
+                </span>
               </a>
             </li>
           </ul>

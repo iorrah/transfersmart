@@ -33,6 +33,10 @@ footer {
           color: inherit;
           font-style: normal;
         }
+
+        &:hover .fa-stack svg:first-child {
+          color: rgba(255, 255, 255, 0.5);
+        }
       }
 
       span {
@@ -40,6 +44,37 @@ footer {
         display: inline-block;
         margin: 0 .5rem;
         font-size: .6rem;
+      }
+
+      .fa-stack {
+        position: relative;
+        display: inline-block;
+        width: 2em;
+        height: 2em;
+        line-height: 2em;
+        vertical-align: middle;
+        color: inherit;
+        margin: 0;
+        font-size: 1rem;
+
+        svg {
+          position: absolute;
+
+          &:first-child {
+            width: 1.8rem;
+            height: 1.8rem;
+            color: rgba(255, 255, 255, 0.25);
+            transition: color .35s;
+          }
+
+          &:last-child {
+            width: 1.2rem;
+            height: 1.2rem;
+            color: #200d43;
+            top: .3rem;
+            left: .3rem;
+          }
+        }
       }
     }
   }
@@ -51,6 +86,7 @@ footer {
 
   .pages {
     float: left;
+    padding: .4rem 0 0;
   }
 
   .social {
