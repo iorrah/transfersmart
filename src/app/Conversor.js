@@ -108,6 +108,18 @@ class Conversor extends React.Component {
       let to = Object.assign({}, rates[0]);
       to.amount = (from.amount * to.rate);
 
+      from.setup = new this.CreateSetupAttr(
+        'You wanto to convert:',
+        true,
+        'from'
+      );
+
+      to.setup = new this.CreateSetupAttr(
+        'To this currency:',
+        false,
+        'to'
+      );
+
       this.setState({ rates, from, to });
     }.bind(this));
   }
@@ -116,26 +128,11 @@ class Conversor extends React.Component {
     this.setInitialState(this.fetchMockData());
   }
 
-  buildEntrySetupFrom() {
-    const from = this.state.from;
-
-    return {
-      desc: 'You wanto to convert:',
-      is_locked: true,
-      selected: from,
-      mode: 'from',
-    };
-  }
-
-  buildEntrySetupTo() {
-    const to = this.state.to;
-
-    return {
-      desc: 'To this currency:',
-      is_locked: false,
-      selected: to,
-      mode: 'to',
-    };
+  CreateSetupAttr(desc, locked, mode) {
+    this.desc = desc;
+    this.is_locked = locked;
+    this.mode = mode;
+    return this;
   }
 
   onChange(setup) {
@@ -143,16 +140,13 @@ class Conversor extends React.Component {
   }
 
   renderAmountEntry(mode) {
-    // const method = `buildEntrySetup${capitalize(mode)}`;
-    // const setup = this[method]();
-
-    // return (
-    //   <AmountEntry
-    //     setup={setup}
-    //     rates={this.state.rates}
-    //     onChange={this.onChange}
-    //   />
-    // );
+    return (
+      <AmountEntry
+        selected={this.state[mode]}
+        rates={this.state.rates}
+        onChange={this.onChange}
+      />
+    );
   }
 
   render() {
