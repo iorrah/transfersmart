@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://www.iorrah.com/transfersmart"><img width="600" src="http://www.iorrah.com/transfersmart/images/brand/logo.png" alt="TransferSmart Logo" title="TransferSmart Logo"></a>
+  <a href="http://www.iorrah.com/transfersmart"><img width="600" src="http://www.iorrah.com/transfersmart/images/brand/logo-radius.png" alt="TransferSmart Logo" title="TransferSmart Logo"></a>
 </p>
 
 ## TransferSmart
