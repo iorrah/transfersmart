@@ -6,8 +6,8 @@ class Ad extends React.Component {
       <div>
         <h1>
           The smart path to
-          trustful currencies
-          conversions
+          trustful currency
+          conversion
         </h1>
 
         <div className="quotation">
