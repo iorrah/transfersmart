@@ -6,13 +6,22 @@ import './AmountEntry.css';
 class AmountEntry extends React.Component {
   constructor(props) {
     super(props);
+    this.onChangeAmount = this.onChangeAmount.bind(this);
+    this.onChangeCurrency = this.onChangeCurrency.bind(this);
+  }
 
-    // this.state = {
-    //   data: {
-    //     amount: 567,
-    //     currency: 765,
-    //   }
-    // }
+  setSelectedInState(selected) {
+    if (!selected.setup) {
+      return null;
+    }
+
+    let data = {};
+    let { amount, currency } = selected;
+
+    data.amount = amount;
+    data.currency = currency;
+
+    this.setState({ data });
   }
 
   persist = (value, currency) => {
@@ -25,8 +34,17 @@ class AmountEntry extends React.Component {
     // }
   }
 
-  onChange = (e) => {
-    // let value = e.target.value;
+  onChangeAmount(e) {
+    // let amount = (e.target.value * 1.00) || 1;
+
+    // if (isNaN(amount * 100)) {
+    //   return;
+    // }
+
+    let selected = Object.assign({}, this.props.selected);
+    selected.amount = (e.target.value * 100) || 0;;
+    this.props.onChange(selected);
+
     // let attr = e.target.name.replace(`-${this.props.setup.mode}`, '');
 
     // this.setState({
@@ -41,12 +59,15 @@ class AmountEntry extends React.Component {
     */
   }
 
-  onChangeAmount(e) {
-    debugger;
-  }
+  onChangeCurrency(object) {
+    if (!object.value) {
+      return;
+    }
 
-  onChangeCurrency(value) {
-    debugger;
+    let selected = Object.assign({}, this.props.selected);
+    selected.currency = object.value;
+    selected.rate = object.rate;
+    this.props.onChange(selected);
   }
 
   render() {
@@ -57,13 +78,15 @@ class AmountEntry extends React.Component {
     }
 
     let { amount, currency } = selected;
+    amount = amount / 100;
     const { desc, mode } = selected.setup;
     const isLocked = selected.setup.is_locked;
 
     const options = this.props.rates.map((e) => {
       return {
         label: e.currency,
-        value: e.currency
+        value: e.currency,
+        rate: e.rate,
       }
     });
 
@@ -75,13 +98,16 @@ class AmountEntry extends React.Component {
           type="text"
           name={`amount-${mode}`}
           value={amount}
-          onChange={this.onChangeAmount} />
+          onChange={this.onChangeAmount}
+          autoFocus={isLocked && true} />
 
         <Select
           name={`currency-${mode}`}
           value={currency}
           options={options}
           onChange={this.onChangeCurrency}
+          disabled={isLocked}
+          clearable={false}
         />
       </div>
     );

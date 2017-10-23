@@ -28,7 +28,11 @@ class Conversor extends React.Component {
         currency: '',
         rate: '',
       },
+      history: []
     };
+
+    this.convert = this.convert.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   fetchData() {
@@ -58,7 +62,7 @@ class Conversor extends React.Component {
       in the process:
 
       .catch(e) {
-        this.errors.push(error);
+        this.errors.push(e);
       }
 
     */
@@ -104,7 +108,7 @@ class Conversor extends React.Component {
       let rates = data.rates;
       rates.push(Object.assign({}, from));
 
-      from.amount = 1;
+      from.amount = 100;
       let to = Object.assign({}, rates[0]);
       to.amount = (from.amount * to.rate);
 
@@ -135,8 +139,72 @@ class Conversor extends React.Component {
     return this;
   }
 
-  onChange(setup) {
-    debugger
+  history = {
+    save(spec) {
+      const { history } = this.state;
+
+      this.setState({
+        history: history.concat([spec]),
+      });
+    },
+
+    hasChanged(spec) {
+      return (spec.amount !== this.state[spec.setup.mode].amount) ||
+        (spec.currency !== this.state[spec.setup.mode].currency);
+    }
+  }
+
+  onChange(spec) {
+    if (!this.history.hasChanged.call(this, spec)) {
+      return;
+    }
+
+    this.history.save.call(this, spec);
+
+    const { amount, currency, rate } = spec;
+    const { mode } = spec.setup;
+    let selected = this.state[mode];
+
+    selected.amount = amount;
+    selected.currency = currency;
+    selected.rate = rate;
+
+    this.setState({ [mode]: selected }, this.convert);
+
+    // this.setState({
+    //   [spec.mode]: {
+    //     ...this.state[spec.mode],
+    //     amount: spec.amount,
+    //     currency: spec.currency,
+    //   }
+    // });
+  }
+
+  convert() {
+    let { history } = this.state;
+    const updatedMode = history[history.length - 1].setup.mode;
+    const outdatedMode = this.invertMode(updatedMode);
+
+    let updatedSpec = this.state[updatedMode];
+    let outdatedSpec = this.state[outdatedMode];
+    let method = `convertThe${capitalize(outdatedMode)}Field`;
+
+    outdatedSpec.amount = this[method](updatedSpec, outdatedSpec);
+    this.setState({ [outdatedMode]: outdatedSpec });
+  }
+
+  convertTheFromField(updated, outdated) {
+    return updated.amount / updated.rate;
+  }
+
+  convertTheToField(updated, outdated) {
+    return updated.amount * outdated.rate;
+  }
+
+  invertMode(mode) {
+    let modes = ['from', 'to'];
+    modes.splice(modes.indexOf(mode), 1);
+    return modes[0];
   }
 
   renderAmountEntry(mode) {
