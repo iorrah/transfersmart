@@ -124,6 +124,9 @@ class Conversor extends React.Component {
         'to'
       );
 
+      this.history.save.call(this, from);
+      this.history.save.call(this, to);
+
       this.setState({ rates, from, to });
     }.bind(this));
   }
@@ -151,6 +154,22 @@ class Conversor extends React.Component {
     hasChanged(spec) {
       return (spec.amount !== this.state[spec.setup.mode].amount) ||
         (spec.currency !== this.state[spec.setup.mode].currency);
+    },
+
+    hasChangedAmount() {
+      const { history } = this.state;
+      const { length } = history;
+      const penultimate = history[length - 2] || {}
+      const last = history[length - 1];
+      return penultimate.amount !== last.amount;
+    },
+
+    hasChangedCurrency() {
+      const { history } = this.state;
+      const { length } = history;
+      const penultimate = history[length - 2] || {};
+      const last = history[length - 1];
+      return penultimate.currency !== last.currency;
     }
   }
 
@@ -158,6 +177,8 @@ class Conversor extends React.Component {
     if (!this.history.hasChanged.call(this, spec)) {
       return;
     }
+
+    console.log('something changed on the "' + spec.setup.mode + '" field');
 
     this.history.save.call(this, spec);
 
@@ -182,8 +203,17 @@ class Conversor extends React.Component {
 
   convert() {
     let { history } = this.state;
-    const updatedMode = history[history.length - 1].setup.mode;
-    const outdatedMode = this.invertMode(updatedMode);
+    let updatedMode, outdatedMode;
+
+    if (this.history.hasChangedAmount.call(this)) {
+      console.log('hasChangedAmount');
+      updatedMode = history[history.length - 1].setup.mode;
+      outdatedMode = this.invertMode(updatedMode);
+    } else if (this.history.hasChangedCurrency.call(this)) {
+      console.log('hasChangedCurrency');
+      outdatedMode = history[history.length - 1].setup.mode;
+      updatedMode = this.invertMode(outdatedMode);
+    }
 
     let updatedSpec = this.state[updatedMode];
     let outdatedSpec = this.state[outdatedMode];
