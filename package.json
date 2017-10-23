@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "flag-icon-css": "^2.8.0",
     "node-sass-chokidar": "0.0.3",
     "normalize-scss": "^7.0.0",
     "npm-run-all": "^4.1.1",

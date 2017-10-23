@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from 'react-select';
+import SelectRate from './SelectRate';
 import 'react-select/dist/react-select.css';
 import './AmountEntry.css';
 
@@ -35,14 +35,20 @@ class AmountEntry extends React.Component {
   }
 
   onChangeAmount(e) {
-    // let amount = (e.target.value * 1.00) || 1;
+    let amount = e.target.value;
 
-    // if (isNaN(amount * 100)) {
-    //   return;
-    // }
+    if ((amount + '').indexOf('.') === (amount.length - 1)) {
+      amount = amount + '00';
+    } else if (!((amount + '').indexOf('.') > -1)) {
+      amount = amount + '.00';
+    } else if (isNaN(amount * 1)) {
+      return;
+    }
+
+    amount = (amount.replace('.', '') * 1);
 
     let selected = Object.assign({}, this.props.selected);
-    selected.amount = (e.target.value * 100) || 0;;
+    selected.amount = amount;
     this.props.onChange(selected);
 
     // let attr = e.target.name.replace(`-${this.props.setup.mode}`, '');
@@ -60,7 +66,7 @@ class AmountEntry extends React.Component {
   }
 
   onChangeCurrency(object) {
-    if (!object.value) {
+    if (!(object || object.value)) {
       return;
     }
 
@@ -77,8 +83,17 @@ class AmountEntry extends React.Component {
       return null;
     }
 
-    let { amount, currency } = selected;
-    amount = amount / 100;
+    let { amount } = selected;
+    let value = selected.currency;
+
+    amount = (amount / 100);
+
+    if (!((amount + '').indexOf('.') > -1)) {
+      amount = (amount) + '.00';
+    } else {
+      amount = amount.toFixed(2);
+    }
+
     const { desc, mode } = selected.setup;
     const isLocked = selected.setup.is_locked;
 
@@ -87,6 +102,7 @@ class AmountEntry extends React.Component {
         label: e.currency,
         value: e.currency,
         rate: e.rate,
+        iso: e.iso,
       }
     });
 
@@ -101,13 +117,17 @@ class AmountEntry extends React.Component {
           onChange={this.onChangeAmount}
           autoFocus={isLocked && true} />
 
-        <Select
-          name={`currency-${mode}`}
-          value={currency}
-          options={options}
+        { /* <Select
           onChange={this.onChangeCurrency}
+        /> */ }
+
+        <SelectRate
+          options={options}
+          value={value}
           disabled={isLocked}
           clearable={false}
+          name={`currency-${mode}`}
+          onChange={(value) => this.onChangeCurrency(value)}
         />
       </div>
     );

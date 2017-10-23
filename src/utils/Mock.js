@@ -5,127 +5,158 @@ const Mock = {
   "rates": [
     {
       "currency": "USD",
-      "rate": "1.1749"
+      "rate": "1.1749",
+      "iso": "us"
     },
     {
       "currency": "JPY",
-      "rate": "132.62"
+      "rate": "132.62",
+      "iso": "jp"
     },
     {
       "currency": "BGN",
-      "rate": "1.9558"
+      "rate": "1.9558",
+      "iso": "bg"
     },
     {
       "currency": "CZK",
-      "rate": "25.705"
+      "rate": "25.705",
+      "iso": "cz"
     },
     {
       "currency": "DKK",
-      "rate": "7.4438"
+      "rate": "7.4438",
+      "iso": "dk"
     },
     {
       "currency": "GBP",
-      "rate": "0.89283"
+      "rate": "0.89283",
+      "iso": "gb"
     },
     {
       "currency": "HUF",
-      "rate": "308.27"
+      "rate": "308.27",
+      "iso": "eu"
     },
     {
       "currency": "PLN",
-      "rate": "4.2277"
+      "rate": "4.2277",
+      "iso": "pl"
     },
     {
       "currency": "RON",
-      "rate": "4.5880"
+      "rate": "4.5880",
+      "iso": "ro"
     },
     {
       "currency": "SEK",
-      "rate": "9.5945"
+      "rate": "9.5945",
+      "iso": "se"
     },
     {
       "currency": "CHF",
-      "rate": "1.1551"
+      "rate": "1.1551",
+      "iso": "ch"
     },
     {
       "currency": "NOK",
-      "rate": "9.3575"
+      "rate": "9.3575",
+      "iso": "no"
     },
     {
       "currency": "HRK",
-      "rate": "7.5075"
+      "rate": "7.5075",
+      "iso": "hr"
     },
     {
       "currency": "RUB",
-      "rate": "67.4559"
+      "rate": "67.4559",
+      "iso": "ru"
     },
     {
       "currency": "TRY",
-      "rate": "4.3225"
+      "rate": "4.3225",
+      "iso": "tr"
     },
     {
       "currency": "AUD",
-      "rate": "1.5009"
+      "rate": "1.5009",
+      "iso": "au"
     },
     {
       "currency": "BRL",
-      "rate": "3.7199"
+      "rate": "3.7199",
+      "iso": "br"
     },
     {
       "currency": "CAD",
-      "rate": "1.4720"
+      "rate": "1.4720",
+      "iso": "ca"
     },
     {
       "currency": "CNY",
-      "rate": "7.7867"
+      "rate": "7.7867",
+      "iso": "cn"
     },
     {
       "currency": "HKD",
-      "rate": "9.1737"
+      "rate": "9.1737",
+      "iso": "hk"
     },
     {
       "currency": "IDR",
-      "rate": "15879.95"
+      "rate": "15879.95",
+      "iso": "id"
     },
     {
       "currency": "ILS",
-      "rate": "4.1283"
+      "rate": "4.1283",
+      "iso": "il"
     },
     {
       "currency": "INR",
-      "rate": "76.4305"
+      "rate": "76.4305",
+      "iso": "in"
     },
     {
       "currency": "KRW",
-      "rate": "1329.28"
+      "rate": "1329.28",
+      "iso": "kr"
     },
     {
       "currency": "MXN",
-      "rate": "22.1311"
+      "rate": "22.1311",
+      "iso": "mx"
     },
     {
       "currency": "MYR",
-      "rate": "4.9622"
+      "rate": "4.9622",
+      "iso": "my"
     },
     {
       "currency": "NZD",
-      "rate": "1.6488"
+      "rate": "1.6488",
+      "iso": "nz"
     },
     {
       "currency": "PHP",
-      "rate": "60.479"
+      "rate": "60.479",
+      "iso": "ph"
     },
     {
       "currency": "SGD",
-      "rate": "1.5962"
+      "rate": "1.5962",
+      "iso": "sg"
     },
     {
       "currency": "THB",
-      "rate": "38.960"
+      "rate": "38.960",
+      "iso": "th"
     },
     {
       "currency": "ZAR",
-      "rate": "15.8999"
+      "rate": "15.8999",
+      "iso": "za"
     }
   ],
   "time": "2017-10-18"

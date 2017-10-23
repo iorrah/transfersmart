@@ -1,5 +1,6 @@
 import React from 'react';
 import AmountEntry from './AmountEntry';
+import CallDebugger from './CallDebugger';
 import capitalize from '../utils/capitalize';
 import Mock from '../utils/Mock';
 import './Conversor.css';
@@ -103,6 +104,7 @@ class Conversor extends React.Component {
       let from = {
         currency: data.base,
         rate: 1,
+        iso: (data.base || '').substr(0, 2).toLowerCase(),
       };
 
       let rates = data.rates;
@@ -115,17 +117,23 @@ class Conversor extends React.Component {
       from.setup = new this.CreateSetupAttr(
         'You wanto to convert:',
         true,
-        'from'
+        'from',
+        from.iso
       );
 
       to.setup = new this.CreateSetupAttr(
         'To this currency:',
         false,
-        'to'
+        'to',
+        to.iso
       );
 
-      this.history.save.call(this, from);
-      this.history.save.call(this, to);
+      this.history.save.call(this, {
+        from: Object.assign({}, from),
+        to: Object.assign({}, to)
+      });
+
+      // this.history.save.call(this, { from, to });
 
       this.setState({ rates, from, to });
     }.bind(this));
@@ -135,10 +143,11 @@ class Conversor extends React.Component {
     this.setInitialState(this.fetchMockData());
   }
 
-  CreateSetupAttr(desc, locked, mode) {
+  CreateSetupAttr(desc, locked, mode, iso) {
     this.desc = desc;
     this.is_locked = locked;
     this.mode = mode;
+    this.iso = iso;
     return this;
   }
 
@@ -151,44 +160,87 @@ class Conversor extends React.Component {
       });
     },
 
-    hasChanged(spec) {
-      return (spec.amount !== this.state[spec.setup.mode].amount) ||
-        (spec.currency !== this.state[spec.setup.mode].currency);
-    },
+    // hasChanged(spec) {
+    //   return (spec.amount !== this.state[spec.setup.mode].amount) ||
+    //     (spec.currency !== this.state[spec.setup.mode].currency);
+    // },
 
     hasChangedAmount() {
       const { history } = this.state;
       const { length } = history;
-      const penultimate = history[length - 2] || {}
+      const penultimate = history[length - 2];
       const last = history[length - 1];
-      return penultimate.amount !== last.amount;
+
+      const isFromCurrEqual = (penultimate.from.currency === last.from.currency);
+      const isFromAmountEqual = (penultimate.from.amount === last.from.amount);
+
+      const isToCurrEqual = (penultimate.to.currency === last.to.currency);
+      const isToAmountEqual = (penultimate.to.amount === last.to.amount);
+
+      return (isFromCurrEqual && (!isFromAmountEqual)) ||
+             (isToCurrEqual && (!isToAmountEqual));
     },
 
     hasChangedCurrency() {
+
+
       const { history } = this.state;
       const { length } = history;
-      const penultimate = history[length - 2] || {};
+      const penultimate = history[length - 2];
       const last = history[length - 1];
-      return penultimate.currency !== last.currency;
+
+      const isFromCurrEqual = (penultimate.from.currency === last.from.currency);
+      const isFromAmountEqual = (penultimate.from.amount === last.from.amount);
+
+      const isToCurrEqual = (penultimate.to.currency === last.to.currency);
+      const isToAmountEqual = (penultimate.to.amount === last.to.amount);
+
+      return ((!isFromCurrEqual) && isFromAmountEqual) ||
+             ((!isToCurrEqual) && isToAmountEqual);
+    },
+
+    getUpdatedAndOutdatedModes() {
+      let outdatedMode, updatedMode;
+
+      const { history } = this.state;
+      const { length } = history;
+      const penultimate = history[length - 2];
+      const last = history[length - 1];
+
+      const isFromCurrEqual = (penultimate.from.currency === last.from.currency);
+      const isFromAmountEqual = (penultimate.from.amount === last.from.amount);
+
+      const isToCurrEqual = (penultimate.to.currency === last.to.currency);
+      const isToAmountEqual = (penultimate.to.amount === last.to.amount);
+
+      if (!isToCurrEqual) {
+        return { outdatedMode: 'to', updatedMode: 'from' };
+      } else if (isFromCurrEqual && isFromAmountEqual) {
+        return { outdatedMode: 'from', updatedMode: 'to' };
+      } else if (isToCurrEqual && isToAmountEqual) {
+        return { outdatedMode: 'to', updatedMode: 'from' };
+      }
     }
   }
 
   onChange(spec) {
-    if (!this.history.hasChanged.call(this, spec)) {
-      return;
-    }
-
-    console.log('something changed on the "' + spec.setup.mode + '" field');
-
-    this.history.save.call(this, spec);
+    // if (!this.history.hasChanged.call(this, spec)) {
+    //   return;
+    // }
 
     const { amount, currency, rate } = spec;
     const { mode } = spec.setup;
+    const invertedMode = this.invertMode(mode);
     let selected = this.state[mode];
 
     selected.amount = amount;
     selected.currency = currency;
     selected.rate = rate;
+
+    this.history.save.call(this, {
+      [mode]: spec,
+      [invertedMode]: this.state[invertedMode]
+    });
 
     this.setState({ [mode]: selected }, this.convert);
 
@@ -203,18 +255,10 @@ class Conversor extends React.Component {
 
   convert() {
     let { history } = this.state;
-    let updatedMode, outdatedMode;
 
-    if (this.history.hasChangedAmount.call(this)) {
-      console.log('hasChangedAmount');
-      updatedMode = history[history.length - 1].setup.mode;
-      outdatedMode = this.invertMode(updatedMode);
-    } else if (this.history.hasChangedCurrency.call(this)) {
-      console.log('hasChangedCurrency');
-      outdatedMode = history[history.length - 1].setup.mode;
-      updatedMode = this.invertMode(outdatedMode);
-    }
+    // debugger
 
+    let { outdatedMode, updatedMode } = this.history.getUpdatedAndOutdatedModes.call(this);
     let updatedSpec = this.state[updatedMode];
     let outdatedSpec = this.state[outdatedMode];
     let method = `convertThe${capitalize(outdatedMode)}Field`;
@@ -250,6 +294,7 @@ class Conversor extends React.Component {
   render() {
     return (
       <div className="conversor">
+        <CallDebugger context={this} />
         {this.renderAmountEntry('from')}
         {this.renderAmountEntry('to')}
       </div>
