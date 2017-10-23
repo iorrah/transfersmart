@@ -294,7 +294,7 @@ class Conversor extends React.Component {
   render() {
     return (
       <div className="conversor">
-        <CallDebugger context={this} />
+        { /* <CallDebugger context={this} /> */ }
         {this.renderAmountEntry('from')}
         {this.renderAmountEntry('to')}
       </div>

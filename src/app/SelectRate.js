@@ -3,6 +3,7 @@ import createClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import 'flag-icon-css/css/flag-icon.css';
+import { FaLock } from 'react-icons/lib/fa';
 
 const GravatarOption = createClass({
   propTypes: {
@@ -59,6 +60,7 @@ const GravatarValue = createClass({
         <span className="Select-value-label">
           <span className="Select-currency-name">{this.props.children}</span>
           <span className={'Select-flag flag-icon flag-icon-' + this.props.value.iso}></span>
+          {this.props.disabled && <FaLock className="Select-locker" />}
         </span>
       </div>
     );
