@@ -7,13 +7,16 @@
   margin: 0 0 3rem;
   color: inherit;
 
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),
+              0 2px 10px 0 rgba(0,0,0,.12);
+
   p {
     color: inherit;
     font-weight: 400;
     font-size: .7rem;
     margin: 0 0 .5rem;
     position: absolute;
-    top: .5rem;
+    top: .7rem;
     left: .8rem;
   }
 
@@ -21,13 +24,15 @@
     border-radius: .12rem;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    background-color: #fff;
+    // background-color: #fff;
+    background-color: #dadada;
     border: 0;
     outline: 0;
-    padding: 1.5rem .8rem .7rem;
+    padding: 1.8rem .8rem 1rem;
     font-size: 1.4rem;
+    font-weight: 400;
     display: block;
-    width: 60%;
+    width: 55%;
     float: left;
   }
 
@@ -36,7 +41,7 @@
     color: #fff;
     position: relative;
     display: block;
-    width: 40%;
+    width: 45%;
     border: 0;
     padding: 0;
     float: left;
@@ -48,14 +53,20 @@
     }
 
     .Select-control {
-      background-color: #200d43;
+      // background-color: #200d43;
+
+      // background: linear-gradient(to bottom, #520ece, #25104c);
+
+      background: linear-gradient(40deg,#521cb3, #2f1361);
+      background: linear-gradient(to bottom, #521cb3, #2f1361);
+
       border-radius: .12rem;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
       border: 0;
       outline: 0;
       color: #fff;
-      height: 3.75rem;
+      height: 4.48rem;
 
       &,
       &:hover,
@@ -67,7 +78,7 @@
           border: 0;
           font-size: 1.2rem;
           font-weight: 600;
-          padding-top: 1rem;
+          padding-top: 1.3rem;
           padding-bottom: 1.1rem;
           padding-left: 1.2rem;
           color: #fff;
@@ -88,7 +99,7 @@
           border: 0;
           font-size: 1.2rem;
           font-weight: 600;
-          padding-top: .8rem;
+          padding-top: 1.1rem;
           padding-left: 1.2rem;
           color: #fff;
 
@@ -130,6 +141,29 @@
 
     .Select-flag { margin-left: .5rem; }
     .Select-locker { margin-left: .5rem; }
+
+    .Select-menu-outer {
+      background-color: #4406b1;
+      border: 0;
+      z-index: 2;
+
+      .Select-menu {
+        background-color: transparent;
+
+        .Select-option {
+          color: #fff;
+          font-size: 1rem;
+          font-weight: 600;
+          background-color: transparent;
+
+          &.is-selected,
+          &.is-focused {
+            background-color: rgba(0, 0, 0, 0.16);
+            color: #fff;
+          }
+        }
+      }
+    }
   }
 }
 
