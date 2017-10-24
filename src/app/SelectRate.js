@@ -60,7 +60,6 @@ const GravatarValue = createClass({
         <span className="Select-value-label">
           <span className="Select-currency-name">{this.props.children}</span>
           <span className={'Select-flag flag-icon flag-icon-' + this.props.value.iso}></span>
-          {this.props.disabled && <FaLock className="Select-locker" />}
         </span>
       </div>
     );
@@ -77,11 +76,39 @@ const SelectRate = createClass({
     return {};
   },
 
+  // onFocus(e) {
+  //   this.props.onFocusSelectRate();
+  // }.bind(this),
+
+  // onBlur(e) {
+  //   this.props.onBlurSelectRate();
+  // }.bind(this),
+
+  // onFocusSelectRate
+  // onBlurSelectRate
+
   render () {
-    const { options, value, disabled, clearable, name, onChange } = this.props;
+    const {
+      options,
+      value,
+      disabled,
+      clearable,
+      name,
+      onChange,
+      onFocusSelectRate,
+      onBlurSelectRate } = this.props;
+
+    let arrowRenderer = () => {
+      if (disabled) {
+        return <FaLock className="Select-locker" />
+      } else {
+        return <span className="Select-arrow"></span>
+      }
+    }
 
     return (
       <Select
+        arrowRenderer={arrowRenderer}
         onChange={onChange}
         optionComponent={GravatarOption}
         options={options}
@@ -90,6 +117,8 @@ const SelectRate = createClass({
         disabled={disabled}
         clearable={clearable}
         valueComponent={GravatarValue}
+        onFocus={onFocusSelectRate}
+        onBlur={onBlurSelectRate}
       />
     );
   }

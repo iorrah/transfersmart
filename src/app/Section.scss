@@ -3,9 +3,11 @@ section {
   // background: -webkit-linear-gradient(to bottom, #2a0845, #6441A5);  /* Chrome 10-25, Safari 5.1-6 */
   // background: linear-gradient(to bottom, #2a0845, #6441A5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-color: #3b1879;
-  padding: 3rem 0 5rem;
+  padding: 6rem 0 9rem;
 
   .row {
+    overflow: visible;
+
     .col {
       display: block;
       float: left;
@@ -26,19 +28,19 @@ section {
     h1 {
       font-weight: 900;
       font-size: 3.4rem;
-      margin: 0 0 4rem;
+      margin: 0 0 5rem;
     }
 
     p {
       font-weight: 100;
       font-size: 1.1rem;
-      margin: 0 0 .8rem;
+      margin: 0 0 1.2rem;
 
       &.quote {
         padding: 0;
         color: rgba(255, 255, 255, .1);
         font-weight: 900;
-        margin: 0;
+        margin: 0 0 1rem;
         font-size: 10rem;
         line-height: 2rem;
         position: relative;

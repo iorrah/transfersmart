@@ -129,7 +129,7 @@ class AmountEntry extends React.Component {
 
     return (
       <div className={classNameAmountEntry}>
-        <div className="amount-entry-content">
+        {/*<div className="amount-entry-content">*/}
           <p>{desc}</p>
 
           <input
@@ -139,7 +139,7 @@ class AmountEntry extends React.Component {
             onChange={this.onChangeAmount}
             onFocus={this.onFocus}
             onBlur={this.onBlur}
-            autoFocus={isLocked && true} />
+            autoFocus={(mode == 'from') && true} />
 
           <SelectRate
             options={options}
@@ -148,8 +148,10 @@ class AmountEntry extends React.Component {
             clearable={false}
             name={`currency-${mode}`}
             onChange={(value) => this.onChangeCurrency(value)}
+            onFocusSelectRate={this.onFocus}
+            onBlurSelectRate={this.onBlur}
           />
-        </div>
+        {/*</div>*/}
       </div>
     );
   }
