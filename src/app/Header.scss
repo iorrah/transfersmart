@@ -49,20 +49,10 @@ header {
       }
 
       &.highlight a {
-        // background: linear-gradient(40deg,#521cb3, #2f1361);
-        // background: #521cb3;
-        // background: -webkit-linear-gradient(to bottom, #521cb3, #2f1361);
-        // background: linear-gradient(to bottom, #521cb3, #2f1361);
         margin-left: .75rem;
         background-color: #3b1879;
 
-        &:hover {
-          // background: linear-gradient(40deg,#5c1dce, #321567);
-          // background: #5c1dce;
-          // background: -webkit-linear-gradient(to bottom, #5c1dce, #321567);
-          // background: linear-gradient(to bottom, #5c1dce, #321567);
-          background: #521cb3;
-        }
+        &:hover { background: #521cb3; }
       }
 
       a {
@@ -72,9 +62,7 @@ header {
         transition: all .3s;
         border-radius: .16rem;
 
-        &:hover {
-          background-color: #3b1879;
-        }
+        &:hover { background-color: #3b1879; }
       }
     }
   }
@@ -88,9 +76,7 @@ header {
     ul li {
       display: none;
 
-      &.highlight {
-        display: inline-block;
-      }
+      &.highlight { display: inline-block; }
     }
   }
 }

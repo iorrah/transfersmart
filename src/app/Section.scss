@@ -112,9 +112,7 @@ section {
       .col {
         width: 100%;
 
-        &.col-ad {
-          margin: 0 0 3.5rem;
-        }
+        &.col-ad { margin: 0 0 3.5rem; }
 
         .ad {
           padding-left: 0;
@@ -127,9 +125,7 @@ section {
               top: -.1rem;
             }
 
-            &.phrase {
-              font-size: 1.2rem;
-            }
+            &.phrase { font-size: 1.2rem; }
           }
         }
 

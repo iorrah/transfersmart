@@ -1,6 +1,12 @@
 import React from 'react';
 import './Footer.css';
-import { FaFacebook, FaTwitter, FaLinkedin, FaSquare } from 'react-icons/lib/fa';
+
+import {
+  FaFacebook,
+  FaTwitter,
+  FaLinkedin,
+  FaSquare
+} from 'react-icons/lib/fa';
 
 class Footer extends React.Component {
   render() {
@@ -71,6 +77,6 @@ class Footer extends React.Component {
       </footer>
     );
   }
-}
+};
 
 export default Footer;

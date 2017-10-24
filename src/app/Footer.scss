@@ -105,5 +105,7 @@ footer {
 }
 
 @media (min-width: 0) and (max-width: 968px) {
-  footer { position: static; }
+  footer {
+    ul.pages li span { margin: 0 .3rem; }
+  }
 }
