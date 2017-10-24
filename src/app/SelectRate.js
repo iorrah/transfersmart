@@ -17,53 +17,54 @@ const SelectRateOption = createClass({
     option: PropTypes.object.isRequired,
   },
 
-  handleMouseDown (event) {
+  handleMouseDown(event) {
     event.preventDefault();
     event.stopPropagation();
     this.props.onSelect(this.props.option, event);
   },
 
-  handleMouseEnter (event) {
+  handleMouseEnter(event) {
     this.props.onFocus(this.props.option, event);
   },
 
-  handleMouseMove (event) {
+  handleMouseMove(event) {
     if (this.props.isFocused) return;
     this.props.onFocus(this.props.option, event);
   },
 
-  render () {
+  render() {
     return (
-      <div className={this.props.className}
+      <div
+        className={this.props.className}
         onMouseDown={this.handleMouseDown}
         onMouseEnter={this.handleMouseEnter}
         onMouseMove={this.handleMouseMove}
         title={this.props.option.title}
       >
         <span className="Select-currency-name">{this.props.children}</span>
-        <span className={'Select-flag flag-icon flag-icon-' + this.props.option.iso}></span>
+        <span className={`Select-flag flag-icon flag-icon-${this.props.option.iso}`} />
       </div>
     );
-  }
+  },
 });
 
 const SelectRateValue = createClass({
   propTypes: {
     children: PropTypes.node,
     placeholder: PropTypes.string,
-    value: PropTypes.object
+    value: PropTypes.object,
   },
 
-  render () {
+  render() {
     return (
       <div className="Select-value" title={this.props.value.title}>
         <span className="Select-value-label">
           <span className="Select-currency-name">{this.props.children}</span>
-          <span className={'Select-flag flag-icon flag-icon-' + this.props.value.iso}></span>
+          <span className={`Select-flag flag-icon flag-icon-${this.props.value.iso}`} />
         </span>
       </div>
     );
-  }
+  },
 });
 
 const SelectRate = createClass({
@@ -72,11 +73,11 @@ const SelectRate = createClass({
     label: PropTypes.string,
   },
 
-  getInitialState () {
+  getInitialState() {
     return {};
   },
 
-  render () {
+  render() {
     const {
       options,
       value,
@@ -87,13 +88,12 @@ const SelectRate = createClass({
       onFocusSelectRate,
       onBlurSelectRate } = this.props;
 
-    let arrowRenderer = () => {
+    const arrowRenderer = () => {
       if (disabled) {
-        return <FaLock className="Select-locker" />
-      } else {
-        return <span className="Select-arrow"></span>
+        return <FaLock className="Select-locker" />;
       }
-    }
+      return <span className="Select-arrow" />;
+    };
 
     return (
       <Select
@@ -110,7 +110,7 @@ const SelectRate = createClass({
         onBlur={onBlurSelectRate}
       />
     );
-  }
+  },
 });
 
 export default SelectRate;

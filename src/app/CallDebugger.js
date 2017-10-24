@@ -7,7 +7,7 @@ class CallDebugger extends React.Component {
   }
 
   onClick() {
-    debugger
+
   }
 
   render() {
