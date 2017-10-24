@@ -153,7 +153,7 @@ class Conversor extends React.Component {
       });
     },
 
-    hasChangedAmount() {
+    getLastChangesAnalysis() {
       const { history } = this.state;
       const { length } = history;
       const penultimate = history[length - 2];
@@ -161,51 +161,66 @@ class Conversor extends React.Component {
 
       const isFromCurrEqual = (penultimate.from.currency === last.from.currency);
       const isFromAmountEqual = (penultimate.from.amount === last.from.amount);
-
       const isToCurrEqual = (penultimate.to.currency === last.to.currency);
       const isToAmountEqual = (penultimate.to.amount === last.to.amount);
 
-      return (isFromCurrEqual && (!isFromAmountEqual)) ||
-             (isToCurrEqual && (!isToAmountEqual));
+      return {
+        was_equal: {
+          from: {
+            currency: isFromCurrEqual,
+            amount: isFromAmountEqual,
+          },
+          to: {
+            currency: isToCurrEqual,
+            amount: isToAmountEqual,
+          },
+        },
+      };
+    },
+
+    hasChangedAmount() {
+      const wasEqual = this
+        .history
+        .getLastChangesAnalysis
+        .call(this)
+        .was_equal;
+
+      return (wasEqual.from.currency && (!wasEqual.from.amount)) ||
+             (wasEqual.to.currency && (!wasEqual.to.amount));
     },
 
     hasChangedCurrency() {
-      const { history } = this.state;
-      const { length } = history;
-      const penultimate = history[length - 2];
-      const last = history[length - 1];
+      const wasEqual = this
+        .history
+        .getLastChangesAnalysis
+        .call(this)
+        .was_equal;
 
-      const isFromCurrEqual = (penultimate.from.currency === last.from.currency);
-      const isFromAmountEqual = (penultimate.from.amount === last.from.amount);
-
-      const isToCurrEqual = (penultimate.to.currency === last.to.currency);
-      const isToAmountEqual = (penultimate.to.amount === last.to.amount);
-
-      return ((!isFromCurrEqual) && isFromAmountEqual) ||
-             ((!isToCurrEqual) && isToAmountEqual);
+      return ((!wasEqual.from.currency) && wasEqual.from.amount) ||
+             ((!wasEqual.to.currency) && wasEqual.to.amount);
     },
 
     getUpdatedAndOutdatedModes() {
       let outdatedMode, updatedMode;
 
-      const { history } = this.state;
-      const { length } = history;
-      const penultimate = history[length - 2];
-      const last = history[length - 1];
+      const wasEqual = this
+        .history
+        .getLastChangesAnalysis
+        .call(this)
+        .was_equal;
 
-      const isFromCurrEqual = (penultimate.from.currency === last.from.currency);
-      const isFromAmountEqual = (penultimate.from.amount === last.from.amount);
-
-      const isToCurrEqual = (penultimate.to.currency === last.to.currency);
-      const isToAmountEqual = (penultimate.to.amount === last.to.amount);
-
-      if (!isToCurrEqual) {
-        return { outdatedMode: 'to', updatedMode: 'from' };
-      } else if (isFromCurrEqual && isFromAmountEqual) {
-        return { outdatedMode: 'from', updatedMode: 'to' };
-      } else if (isToCurrEqual && isToAmountEqual) {
-        return { outdatedMode: 'to', updatedMode: 'from' };
+      if (!wasEqual.to.currency) {
+        outdatedMode = 'to';
+        updatedMode = 'from';
+      } else if (wasEqual.from.currency && wasEqual.from.amount) {
+        outdatedMode = 'from';
+        updatedMode = 'to';
+      } else if (wasEqual.to.currency && wasEqual.to.amount) {
+        outdatedMode = 'to';
+        updatedMode = 'from';
       }
+
+      return { outdatedMode, updatedMode };
     }
   }
 
@@ -228,11 +243,10 @@ class Conversor extends React.Component {
   }
 
   convert() {
-    let { history } = this.state;
-
     let {
       outdatedMode,
-      updatedMode } = this.history.getUpdatedAndOutdatedModes.call(this);
+      updatedMode
+    } = this.history.getUpdatedAndOutdatedModes.call(this);
 
     let updatedSpec = this.state[updatedMode];
     let outdatedSpec = this.state[outdatedMode];
