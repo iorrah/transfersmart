@@ -88,9 +88,7 @@ footer {
   .social {
     float: right;
 
-    li span {
-      margin: 0 .07rem;
-    }
+    li span { margin: 0 .07rem; }
   }
 
   .copyright {
@@ -107,7 +105,5 @@ footer {
 }
 
 @media (min-width: 0) and (max-width: 968px) {
-  footer {
-    position: static;
-  }
+  footer { position: static; }
 }

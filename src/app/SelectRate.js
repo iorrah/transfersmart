@@ -5,7 +5,7 @@ import Select from 'react-select';
 import 'flag-icon-css/css/flag-icon.css';
 import { FaLock } from 'react-icons/lib/fa';
 
-const GravatarOption = createClass({
+const SelectRateOption = createClass({
   propTypes: {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -47,7 +47,7 @@ const GravatarOption = createClass({
   }
 });
 
-const GravatarValue = createClass({
+const SelectRateValue = createClass({
   propTypes: {
     children: PropTypes.node,
     placeholder: PropTypes.string,
@@ -76,17 +76,6 @@ const SelectRate = createClass({
     return {};
   },
 
-  // onFocus(e) {
-  //   this.props.onFocusSelectRate();
-  // }.bind(this),
-
-  // onBlur(e) {
-  //   this.props.onBlurSelectRate();
-  // }.bind(this),
-
-  // onFocusSelectRate
-  // onBlurSelectRate
-
   render () {
     const {
       options,
@@ -110,13 +99,13 @@ const SelectRate = createClass({
       <Select
         arrowRenderer={arrowRenderer}
         onChange={onChange}
-        optionComponent={GravatarOption}
+        optionComponent={SelectRateOption}
         options={options}
         name={name}
         value={value}
         disabled={disabled}
         clearable={clearable}
-        valueComponent={GravatarValue}
+        valueComponent={SelectRateValue}
         onFocus={onFocusSelectRate}
         onBlur={onBlurSelectRate}
       />

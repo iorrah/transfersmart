@@ -17,30 +17,6 @@ class AmountEntry extends React.Component {
     }
   }
 
-  setSelectedInState(selected) {
-    if (!selected.setup) {
-      return null;
-    }
-
-    let data = {};
-    let { amount, currency } = selected;
-
-    data.amount = amount;
-    data.currency = currency;
-
-    this.setState({ data });
-  }
-
-  persist = (value, currency) => {
-    // let errors = this.validate(value);
-    // this.setState({ errors });
-    // let mode = this.props.mode;
-
-    // if (Object.keys(errors).length === 0) {
-    //   this.props.onChange(value, currency, mode);
-    // }
-  }
-
   onChangeAmount(e) {
     let amount = e.target.value;
 
@@ -57,19 +33,6 @@ class AmountEntry extends React.Component {
     let selected = Object.assign({}, this.props.selected);
     selected.amount = amount;
     this.props.onChange(selected);
-
-    // let attr = e.target.name.replace(`-${this.props.setup.mode}`, '');
-
-    // this.setState({
-    //   data: { ...this.state.data, [attr]: value }
-    // });
-
-    /*
-      We should not execute the
-      persistence immediatelly:
-
-      this.debounce.apply(this.persist, value);
-    */
   }
 
   onChangeCurrency(object) {
@@ -129,29 +92,27 @@ class AmountEntry extends React.Component {
 
     return (
       <div className={classNameAmountEntry}>
-        {/*<div className="amount-entry-content">*/}
-          <p>{desc}</p>
+        <p>{desc}</p>
 
-          <input
-            type="text"
-            name={`amount-${mode}`}
-            value={amount}
-            onChange={this.onChangeAmount}
-            onFocus={this.onFocus}
-            onBlur={this.onBlur}
-            autoFocus={(mode == 'from') && true} />
+        <input
+          type="text"
+          name={`amount-${mode}`}
+          value={amount}
+          onChange={this.onChangeAmount}
+          onFocus={this.onFocus}
+          onBlur={this.onBlur}
+          autoFocus={(mode === 'from') && true} />
 
-          <SelectRate
-            options={options}
-            value={value}
-            disabled={isLocked}
-            clearable={false}
-            name={`currency-${mode}`}
-            onChange={(value) => this.onChangeCurrency(value)}
-            onFocusSelectRate={this.onFocus}
-            onBlurSelectRate={this.onBlur}
-          />
-        {/*</div>*/}
+        <SelectRate
+          options={options}
+          value={value}
+          disabled={isLocked}
+          clearable={false}
+          name={`currency-${mode}`}
+          onChange={(value) => this.onChangeCurrency(value)}
+          onFocusSelectRate={this.onFocus}
+          onBlurSelectRate={this.onBlur}
+        />
       </div>
     );
   }

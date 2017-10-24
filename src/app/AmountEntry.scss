@@ -8,30 +8,19 @@
   color: inherit;
   border: 0;
   border-radius: .12rem;
-  // border: .13rem solid transparent;
+  border-radius: .12rem;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),
+              0 2px 10px 0 rgba(0,0,0,.12);
 
-
-
-  // .amount-entry-content {
-    border-radius: .12rem;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),
-                0 2px 10px 0 rgba(0,0,0,.12);
-
-    -webkit-transition: -webkit-box-shadow .55s;
-    transition: -webkit-box-shadow .55s;
-    transition: box-shadow .55s;
-    transition: box-shadow .55s,-webkit-box-shadow .55s;
-
-  // }
+  -webkit-transition: -webkit-box-shadow .55s;
+  transition: -webkit-box-shadow .55s;
+  transition: box-shadow .55s;
+  transition: box-shadow .55s,-webkit-box-shadow .55s;
 
 
   &.is-focused {
-    // border-color: rgba(194, 186, 206, 0.13);
-
-    // .amount-entry-content {
-      box-shadow: 0 12px 15px 0 rgba(0,0,0,.24),
-                  0 17px 50px 0 rgba(0,0,0,.19);
-    // }
+    box-shadow: 0 12px 15px 0 rgba(0,0,0,.24),
+                0 17px 50px 0 rgba(0,0,0,.19);
 
     input[type="text"] {
       background-color: #fff;
@@ -41,23 +30,7 @@
       background: linear-gradient(40deg,#5c1cd0, #2e017d);
       background: linear-gradient(to bottom, #5c1cd0, #2e017d);
     }
-
   }
-
-  // .amount-entry-content {
-  //   border-radius: .12rem;
-  //   box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),
-  //               0 2px 10px 0 rgba(0,0,0,.12);
-
-  //   position: relative;
-  //   overflow: auto;
-
-  //   -webkit-transition: -webkit-box-shadow .55s;
-  //   transition: -webkit-box-shadow .55s;
-  //   transition: box-shadow .55s;
-  //   transition: box-shadow .55s,-webkit-box-shadow .55s;
-
-  // }
 
   p {
     color: inherit;
@@ -97,7 +70,6 @@
     display: block;
     width: 45%;
     border: 0;
-    // border-left: .2rem solid #c2bace;
     padding: 0;
     float: left;
 
@@ -108,13 +80,8 @@
     }
 
     .Select-control {
-      // background-color: #200d43;
-
-      // background: linear-gradient(to bottom, #520ece, #25104c);
-
       background: linear-gradient(40deg,#521cb3, #2f1361);
       background: linear-gradient(to bottom, #521cb3, #2f1361);
-
       border-radius: .12rem;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
@@ -122,7 +89,6 @@
       outline: 0;
       color: #fff;
       height: 4.48rem;
-
 
       &,
       &:hover,
