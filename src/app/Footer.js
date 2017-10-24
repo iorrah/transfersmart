@@ -1,5 +1,4 @@
 import React from 'react';
-import './Footer.css';
 
 import {
   FaFacebook,
@@ -8,75 +7,75 @@ import {
   FaSquare,
 } from 'react-icons/lib/fa';
 
-class Footer extends React.Component {
-  render() {
-    return (
-      <footer>
-        <div className="links wrapper">
-          <ul className="pages">
-            <li>
-              <a href="/">FAQ</a>
-            </li>
+import './Footer.css';
 
-            <li><span>&bull;</span></li>
+const Footer = function() {
+  return (
+    <footer>
+      <div className="links wrapper">
+        <ul className="pages">
+          <li>
+            <a href="/">FAQ</a>
+          </li>
 
-            <li>
-              <a href="/">Contac</a>
-            </li>
+          <li><span>&bull;</span></li>
 
-            <li><span>&bull;</span></li>
+          <li>
+            <a href="/">Contac</a>
+          </li>
 
-            <li>
-              <a href="/">Jobs</a>
-            </li>
+          <li><span>&bull;</span></li>
 
-            <li><span>&bull;</span></li>
+          <li>
+            <a href="/">Jobs</a>
+          </li>
 
-            <li>
-              <a href="/">Blog</a>
-            </li>
-          </ul>
+          <li><span>&bull;</span></li>
 
-          <ul className="social">
-            <li>
-              <a href="/">
-                <span className="fa-stack">
-                  <FaSquare />
-                  <FaFacebook />
-                </span>
-              </a>
-            </li>
+          <li>
+            <a href="/">Blog</a>
+          </li>
+        </ul>
 
-            <li><span /></li>
+        <ul className="social">
+          <li>
+            <a href="/">
+              <span className="fa-stack">
+                <FaSquare />
+                <FaFacebook />
+              </span>
+            </a>
+          </li>
 
-            <li>
-              <a href="/">
-                <span className="fa-stack">
-                  <FaSquare />
-                  <FaTwitter />
-                </span>
-              </a>
-            </li>
+          <li><span /></li>
 
-            <li><span /></li>
+          <li>
+            <a href="/">
+              <span className="fa-stack">
+                <FaSquare />
+                <FaTwitter />
+              </span>
+            </a>
+          </li>
 
-            <li>
-              <a href="/">
-                <span className="fa-stack">
-                  <FaSquare />
-                  <FaLinkedin />
-                </span>
-              </a>
-            </li>
-          </ul>
-        </div>
+          <li><span /></li>
 
-        <div className="copyright">
-          © 2017 Copyright TransferSmart
-        </div>
-      </footer>
-    );
-  }
-}
+          <li>
+            <a href="/">
+              <span className="fa-stack">
+                <FaSquare />
+                <FaLinkedin />
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div className="copyright">
+        © 2017 Copyright TransferSmart
+      </div>
+    </footer>
+  );
+};
 
 export default Footer;

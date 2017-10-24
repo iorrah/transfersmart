@@ -1,9 +1,17 @@
 import React from 'react';
-import SelectRate from './SelectRate';
+import PropTypes from 'prop-types';
 import 'react-select/dist/react-select.css';
+import SelectRate from './SelectRate';
 import './AmountEntry.css';
 
 class AmountEntry extends React.Component {
+  propTypes = {
+    selected: PropTypes.object,
+    onChange: PropTypes.func,
+    rates: PropTypes.array,
+    ['rates.map']: PropTypes.func,
+  }
+
   constructor(props) {
     super(props);
 

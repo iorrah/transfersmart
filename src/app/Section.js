@@ -3,26 +3,24 @@ import Ad from './Ad';
 import Conversor from './Conversor';
 import './Section.css';
 
-class Section extends React.Component {
-  render() {
-    return (
-      <section>
-        <div className="row wrapper">
-          <div className="col col-ad">
-            <div className="ad">
-              <Ad />
-            </div>
-          </div>
-
-          <div className="col col-feature">
-            <div className="feature">
-              <Conversor />
-            </div>
+const Section = function() {
+  return (
+    <section>
+      <div className="row wrapper">
+        <div className="col col-ad">
+          <div className="ad">
+            <Ad />
           </div>
         </div>
-      </section>
-    );
-  }
-}
+
+        <div className="col col-feature">
+          <div className="feature">
+            <Conversor />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default Section;
