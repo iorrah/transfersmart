@@ -6,8 +6,15 @@ import './AmountEntry.css';
 class AmountEntry extends React.Component {
   constructor(props) {
     super(props);
+
+    this.onBlur = this.onBlur.bind(this);
+    this.onFocus = this.onFocus.bind(this);
     this.onChangeAmount = this.onChangeAmount.bind(this);
     this.onChangeCurrency = this.onChangeCurrency.bind(this);
+
+    this.state = {
+      is_focused: false
+    }
   }
 
   setSelectedInState(selected) {
@@ -76,6 +83,14 @@ class AmountEntry extends React.Component {
     this.props.onChange(selected);
   }
 
+  onFocus() {
+    this.setState({ is_focused: true });
+  }
+
+  onBlur() {
+    this.setState({ is_focused: false });
+  }
+
   render() {
     let { selected } = this.props;
 
@@ -106,29 +121,35 @@ class AmountEntry extends React.Component {
       }
     });
 
+    let classNameAmountEntry = 'amount-entry';
+
+    if (this.state.is_focused) {
+      classNameAmountEntry += ' is-focused';
+    }
+
     return (
-      <div className="amount-entry">
-        <p>{desc}</p>
+      <div className={classNameAmountEntry}>
+        <div className="amount-entry-content">
+          <p>{desc}</p>
 
-        <input
-          type="text"
-          name={`amount-${mode}`}
-          value={amount}
-          onChange={this.onChangeAmount}
-          autoFocus={isLocked && true} />
+          <input
+            type="text"
+            name={`amount-${mode}`}
+            value={amount}
+            onChange={this.onChangeAmount}
+            onFocus={this.onFocus}
+            onBlur={this.onBlur}
+            autoFocus={isLocked && true} />
 
-        { /* <Select
-          onChange={this.onChangeCurrency}
-        /> */ }
-
-        <SelectRate
-          options={options}
-          value={value}
-          disabled={isLocked}
-          clearable={false}
-          name={`currency-${mode}`}
-          onChange={(value) => this.onChangeCurrency(value)}
-        />
+          <SelectRate
+            options={options}
+            value={value}
+            disabled={isLocked}
+            clearable={false}
+            name={`currency-${mode}`}
+            onChange={(value) => this.onChangeCurrency(value)}
+          />
+        </div>
       </div>
     );
   }

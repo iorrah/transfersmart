@@ -122,7 +122,7 @@ class Conversor extends React.Component {
       );
 
       to.setup = new this.CreateSetupAttr(
-        'To this currency:',
+        'To this amount:',
         false,
         'to',
         to.iso
