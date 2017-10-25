@@ -3,32 +3,6 @@ import AmountEntry from './AmountEntry';
 import capitalize from '../utils/capitalize';
 import Mock from '../utils/Mock';
 
-/*
-
-  spec: object
-
-    from/to: object
-      amount: float
-      currency: string
-      rate: float
-
-      setup: object
-        desc:
-        is_locked: boolean
-        mode: string
-        iso: string // duplication
-
-  rates: array
-    item: object
-      currency: string
-      iso: string
-      rate: float
-
-  history: array
-    item: { spec }
-
-*/
-
 class Conversor extends React.Component {
   constructor(props) {
     super(props);
@@ -69,13 +43,6 @@ class Conversor extends React.Component {
     });
   }
 
-    // promise.then(function(data) {
-    //   let from = {
-    //     currency: data.base,
-    //     rate: 1,
-    //     iso: (data.base || '').substr(0, 2).toLowerCase(),
-    //   };
-
   setInitialState(promise) {
     promise.then(function(data) {
       return new Promise((resolve, reject) => {
@@ -106,27 +73,17 @@ class Conversor extends React.Component {
             to.iso
           );
 
-          // this.history.save.call(this, {
-          //   from: Object.assign({}, from),
-          //   to: Object.assign({}, to)
-          // });
-
           this.setState({ rates, from, to }, this.agnosticFromAndToLog);
 
           return resolve(true);
         }, 1000);
       }).then(function(something) {
-        // we are going to set the 'this.state.to' key
-        // based on the user's location
-
         let specTo = Object.assign({}, this.state.rates[0]);
         specTo.setup = Object.assign({}, this.state.to.setup);
-
         specTo.amount = null;
         let newToSpec = Object.assign({}, this.getConvertedSpec.call(this, specTo));
         console.log('when this was created, the value was ' + newToSpec.amount);
         return this.setState({ to: newToSpec }, this.agnosticFromAndToLog);
-
       }.bind(this));
     }.bind(this));
   }
@@ -165,8 +122,6 @@ class Conversor extends React.Component {
     },
 
     getLastChangesAnalysis(spec = null) {
-      // debugger
-
       const { history } = this.state;
       const { length } = history;
       let penultimate, last;
@@ -198,39 +153,8 @@ class Conversor extends React.Component {
       };
     },
 
-    // hasChangedAmount() {
-    //   const wasEqual = this
-    //     .history
-    //     .getLastChangesAnalysis
-    //     .call(this)
-    //     .was_equal;
-
-    //   return (wasEqual.from.currency && (!wasEqual.from.amount)) ||
-    //          (wasEqual.to.currency && (!wasEqual.to.amount));
-    // },
-
-    // hasChangedCurrency() {
-    //   const wasEqual = this
-    //     .history
-    //     .getLastChangesAnalysis
-    //     .call(this)
-    //     .was_equal;
-
-    //   return ((!wasEqual.from.currency) && wasEqual.from.amount) ||
-    //          ((!wasEqual.to.currency) && wasEqual.to.amount);
-    // },
-
     getUpdatedAndOutdatedModes(specs) {
       let outdatedMode, updatedMode;
-
-      // const iOutdatedMode = specs.outdatedSpec.setup.mode;
-      // const iUpdatedMode = specs.updatedSpec.setup.mode;
-
-      // const temporaryHistory = {
-      //   [iOutdatedMode]: specs.outdatedSpec,
-      //   [iUpdatedMode]: specs.updatedSpec
-      // };
-
       const temporaryHistory = Object.assign({}, specs);
 
       const wasEqual = this
@@ -273,7 +197,7 @@ class Conversor extends React.Component {
   }
 
   getConvertedSpec(spec) {
-    const { amount, currency, rate } = spec;
+    const { currency, rate } = spec;
     const { mode } = spec.setup;
     const invertedMode = this.invertMode(mode);
     let selected = Object.assign({}, this.state[mode]);
@@ -286,8 +210,6 @@ class Conversor extends React.Component {
   }
 
   onChange(spec) {
-    // debugger
-
     const { amount, currency, rate } = spec;
     const { mode, iso } = spec.setup;
     const invertedMode = this.invertMode(mode);
@@ -304,20 +226,13 @@ class Conversor extends React.Component {
 
   justConvert(outdatedSpec, updatedSpec) {
     let outdatedMode = outdatedSpec.setup.mode;
-    let updatedMode = updatedSpec.setup.mode;
-
     let method = `convertThe${capitalize(outdatedMode)}Field`;
-
     let toReturn = Object.assign({}, outdatedSpec);
-
     toReturn.amount = this[method](outdatedSpec, updatedSpec);
-
     return toReturn;
   }
 
   convert(iOutdatedSpec, iUpdatedSpec) {
-
-
     let iOutdatedMode = iOutdatedSpec.setup.mode;
     let iUpdatedMode = iUpdatedSpec.setup.mode;
 
@@ -364,10 +279,11 @@ class Conversor extends React.Component {
   convertTheFromField(outdated, updated) {
     /*
 
-      should only be used after:
+      This method should
+      only be used after:
 
-        - 'from' select change (x)
-        - 'to' input change
+        - the 'from' select has changed (x)
+        - or the 'to' input has changed
 
    */
 
@@ -378,10 +294,11 @@ class Conversor extends React.Component {
   convertTheToField(outdated, updated) {
     /*
 
-      should only be used after:
+      This method should
+      only be used after:
 
-        - 'from' input change
-        - 'to' select change
+        - the 'from' input has changed
+        - or the 'to' select has changed
 
    */
 
