@@ -56,7 +56,7 @@ class Conversor extends React.Component {
           let rates = data.rates;
           rates.push(Object.assign({}, from));
 
-          from.amount = 100;
+          from.amount = 1;
           let to = Object.assign({}, from);
 
           from.setup = new this.CreateSetupAttr(
@@ -82,7 +82,6 @@ class Conversor extends React.Component {
         specTo.setup = Object.assign({}, this.state.to.setup);
         specTo.amount = null;
         let newToSpec = Object.assign({}, this.getConvertedSpec.call(this, specTo));
-        console.log('when this was created, the value was ' + newToSpec.amount);
         return this.setState({ to: newToSpec }, this.agnosticFromAndToLog);
       }.bind(this));
     }.bind(this));
@@ -107,10 +106,10 @@ class Conversor extends React.Component {
       let desc = ''
         + 'The amount of'
         + ' ' + spec.from.currency
-        + ' ' + (spec.from.amount / 100)
+        + ' ' + (spec.from.amount)
         + ' (rate: ' + spec.from.rate + ')'
         + ' was converted to'
-        + ' ' + (spec.to.amount / 100)
+        + ' ' + (spec.to.amount)
         + ' ' + spec.to.currency
         + ' (rate: ' + spec.to.rate + ')';
 

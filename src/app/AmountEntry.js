@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Cleave from 'cleave.js/react';
 import 'react-select/dist/react-select.css';
 import SelectRate from './SelectRate';
 import './AmountEntry.css';
@@ -25,20 +26,7 @@ class AmountEntry extends React.Component {
   }
 
   onChangeAmount(e) {
-    let amount = e.target.value;
-
-    // if ((`${amount}`).indexOf('.') === (amount.length - 1)) {
-    //   amount += '00';
-    // } else if (!((`${amount}`).indexOf('.') > -1)) {
-    //   amount += '.00';
-    // } else if (isNaN(amount * 1)) {
-    //   return;
-    // }
-
-    // amount = (amount.replace('.', '') * 1);
-
-    amount *= 100;
-
+    let amount = e.target.rawValue;
     const selected = Object.assign({}, this.props.selected);
     selected.amount = amount;
     this.props.onChange(selected);
@@ -71,17 +59,7 @@ class AmountEntry extends React.Component {
       return null;
     }
 
-    let { amount } = selected;
-    const value = selected.currency;
-
-    amount /= 100;
-
-    // if (!((`${amount}`).indexOf('.') > -1)) {
-    //   amount += '.00';
-    // } else {
-    //   amount = amount.toFixed(2);
-    // }
-
+    let { amount, currency } = selected;
     const { desc, mode } = selected.setup;
     const isLocked = selected.setup.is_locked;
 
@@ -102,7 +80,8 @@ class AmountEntry extends React.Component {
       <div className={classNameAmountEntry}>
         <p>{desc}</p>
 
-        <input
+        <Cleave
+          options={ { numeral: true } }
           type="text"
           name={`amount-${mode}`}
           value={amount}
@@ -114,11 +93,11 @@ class AmountEntry extends React.Component {
 
         <SelectRate
           options={options}
-          value={value}
+          value={currency}
           disabled={isLocked}
           clearable={false}
           name={`currency-${mode}`}
-          onChange={value => this.onChangeCurrency(value)}
+          onChange={currency => this.onChangeCurrency(currency)}
           onFocusSelectRate={this.onFocus}
           onBlurSelectRate={this.onBlur}
         />
