@@ -5,7 +5,7 @@ import SelectRate from './SelectRate';
 import './AmountEntry.css';
 
 class AmountEntry extends React.Component {
-  propTypes = {
+  propTypes: {
     selected: PropTypes.object,
     onChange: PropTypes.func,
     rates: PropTypes.array,

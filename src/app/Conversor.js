@@ -38,6 +38,13 @@ class Conversor extends React.Component {
     });
   }
 
+    // promise.then(function(data) {
+    //   let from = {
+    //     currency: data.base,
+    //     rate: 1,
+    //     iso: (data.base || '').substr(0, 2).toLowerCase(),
+    //   };
+
   setInitialState(promise) {
     promise.then(function(data) {
       let from = {
@@ -50,8 +57,7 @@ class Conversor extends React.Component {
       rates.push(Object.assign({}, from));
 
       from.amount = 100;
-      let to = Object.assign({}, rates[0]);
-      to.amount = (from.amount * to.rate);
+      let to = Object.assign({}, from);
 
       from.setup = new this.CreateSetupAttr(
         'You wanto to convert:',
@@ -92,16 +98,28 @@ class Conversor extends React.Component {
     save(spec) {
       const { history } = this.state;
 
+      let desc = ''
+        + 'The amount of'
+        + ' ' + spec.from.currency
+        + ' ' + (spec.from.amount / 100)
+        + ' (rate: ' + spec.from.rate + ')'
+        + ' was converted to'
+        + ' ' + (spec.to.amount / 100)
+        + ' ' + spec.to.currency
+        + ' (rate: ' + spec.to.rate + ')';
+
+      console.info(desc);
+
       this.setState({
-        history: history.concat([spec]),
+        history: history.concat([{ desc, spec }]),
       });
     },
 
     getLastChangesAnalysis() {
       const { history } = this.state;
       const { length } = history;
-      const penultimate = history[length - 2];
-      const last = history[length - 1];
+      const penultimate = history[length - 2].spec;
+      const last = history[length - 1].spec;
 
       const isFromCurrEqual = (penultimate.from.currency === last.from.currency);
       const isFromAmountEqual = (penultimate.from.amount === last.from.amount);
@@ -146,6 +164,8 @@ class Conversor extends React.Component {
 
     getUpdatedAndOutdatedModes() {
       let outdatedMode, updatedMode;
+
+      // debugger
 
       const wasEqual = this
         .history
