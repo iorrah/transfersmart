@@ -50,6 +50,7 @@ class AmountEntry extends React.Component {
     const selected = Object.assign({}, this.props.selected);
     selected.currency = object.value;
     selected.rate = object.rate;
+    selected.iso = object.iso;
     this.props.onChange(selected);
   }
 

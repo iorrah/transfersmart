@@ -3,6 +3,32 @@ import AmountEntry from './AmountEntry';
 import capitalize from '../utils/capitalize';
 import Mock from '../utils/Mock';
 
+/*
+
+  spec: object
+
+    from/to: object
+      amount: float
+      currency: string
+      rate: float
+
+      setup: object
+        desc:
+        is_locked: boolean
+        mode: string
+        iso: string // duplication
+
+  rates: array
+    item: object
+      currency: string
+      iso: string
+      rate: float
+
+  history: array
+    item: { spec }
+
+*/
+
 class Conversor extends React.Component {
   constructor(props) {
     super(props);
@@ -13,17 +39,22 @@ class Conversor extends React.Component {
         amount: 0,
         currency: '',
         rate: '',
+        setup: {},
       },
       to: {
         amount: 0,
         currency: '',
         rate: '',
+        setup: {},
       },
       history: []
     };
 
     this.convert = this.convert.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.getConvertedSpec = this.getConvertedSpec.bind(this);
+    this.justConvert = this.justConvert.bind(this);
+    this.agnosticFromAndToLog = this.agnosticFromAndToLog.bind(this);
   }
 
   fetchMockData() {
@@ -47,38 +78,55 @@ class Conversor extends React.Component {
 
   setInitialState(promise) {
     promise.then(function(data) {
-      let from = {
-        currency: data.base,
-        rate: 1,
-        iso: (data.base || '').substr(0, 2).toLowerCase(),
-      };
+      return new Promise((resolve, reject) => {
+        return setTimeout(() => {
+          let from = {
+            currency: data.base,
+            rate: 1,
+            iso: (data.base || '').substr(0, 2).toLowerCase(),
+          };
 
-      let rates = data.rates;
-      rates.push(Object.assign({}, from));
+          let rates = data.rates;
+          rates.push(Object.assign({}, from));
 
-      from.amount = 100;
-      let to = Object.assign({}, from);
+          from.amount = 100;
+          let to = Object.assign({}, from);
 
-      from.setup = new this.CreateSetupAttr(
-        'You wanto to convert:',
-        true,
-        'from',
-        from.iso
-      );
+          from.setup = new this.CreateSetupAttr(
+            'You wanto to convert:',
+            true,
+            'from',
+            from.iso
+          );
 
-      to.setup = new this.CreateSetupAttr(
-        'To this amount:',
-        false,
-        'to',
-        to.iso
-      );
+          to.setup = new this.CreateSetupAttr(
+            'To this amount:',
+            false,
+            'to',
+            to.iso
+          );
 
-      this.history.save.call(this, {
-        from: Object.assign({}, from),
-        to: Object.assign({}, to)
-      });
+          // this.history.save.call(this, {
+          //   from: Object.assign({}, from),
+          //   to: Object.assign({}, to)
+          // });
 
-      this.setState({ rates, from, to });
+          this.setState({ rates, from, to }, this.agnosticFromAndToLog);
+
+          return resolve(true);
+        }, 1000);
+      }).then(function(something) {
+        // we are going to set the 'this.state.to' key
+        // based on the user's location
+
+        let specTo = Object.assign({}, this.state.rates[0]);
+        specTo.setup = Object.assign({}, this.state.to.setup);
+
+        specTo.amount = null;
+        let newToSpec = this.getConvertedSpec.call(this, specTo);
+        return this.setState({ to: newToSpec }, this.agnosticFromAndToLog);
+
+      }.bind(this));
     }.bind(this));
   }
 
@@ -110,7 +158,7 @@ class Conversor extends React.Component {
 
       console.info(desc);
 
-      this.setState({
+      return this.setState({
         history: history.concat([{ desc, spec }]),
       });
     },
@@ -188,7 +236,22 @@ class Conversor extends React.Component {
     }
   }
 
+  getConvertedSpec(spec) {
+    const { amount, currency, rate } = spec;
+    const { mode } = spec.setup;
+    const invertedMode = this.invertMode(mode);
+    let selected = Object.assign({}, this.state[mode]);
+
+    selected.amount = null;
+    selected.currency = currency;
+    selected.rate = rate;
+
+    return this.justConvert(selected, this.state[invertedMode]);
+  }
+
   onChange(spec) {
+    // debugger
+
     const { amount, currency, rate } = spec;
     const { mode } = spec.setup;
     const invertedMode = this.invertMode(mode);
@@ -198,12 +261,22 @@ class Conversor extends React.Component {
     selected.currency = currency;
     selected.rate = rate;
 
-    this.history.save.call(this, {
-      [mode]: spec,
-      [invertedMode]: this.state[invertedMode]
-    });
+    let toReturn = this.justConvert(selected, this.state[invertedMode]);
 
-    this.setState({ [mode]: selected }, this.convert);
+    this.setState({ [mode]: toReturn }, this.agnosticFromAndToLog);
+  }
+
+  justConvert(outdatedSpec, updatedSpec) {
+    let outdatedMode = outdatedSpec.setup.mode;
+    let updatedMode = updatedSpec.setup.mode;
+
+    let method = `convertThe${capitalize(outdatedMode)}Field`;
+
+    let toReturn = Object.assign({}, outdatedSpec);
+
+    toReturn.amount = this[method](updatedSpec, outdatedSpec);
+
+    return toReturn;
   }
 
   convert() {
@@ -217,7 +290,26 @@ class Conversor extends React.Component {
     let method = `convertThe${capitalize(outdatedMode)}Field`;
 
     outdatedSpec.amount = this[method](updatedSpec, outdatedSpec);
-    this.setState({ [outdatedMode]: outdatedSpec });
+
+    this.setState(
+      { [outdatedMode]: outdatedSpec },
+      this.agnosticFromAndToLog
+    );
+  }
+
+  agnosticFromAndToLog(from = null, to = null) {
+    let log;
+
+    if (from && to) {
+      log = { from, to };
+    } else {
+      log = {
+        from: this.state.from,
+        to: this.state.to
+      }
+    }
+
+    this.history.save.call(this, log);
   }
 
   convertTheFromField(updated, outdated) {
@@ -245,6 +337,10 @@ class Conversor extends React.Component {
   }
 
   render() {
+    if (!(this.state.from.setup || this.state.to.setup)) {
+      return;
+    }
+
     return (
       <div className="conversor">
         {this.renderAmountEntry('from')}
