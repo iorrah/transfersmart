@@ -2,6 +2,7 @@ import React from 'react';
 import AmountEntry from './AmountEntry';
 import capitalize from '../utils/capitalize';
 import Mock from '../utils/Mock';
+import API from './API';
 
 class Conversor extends React.Component {
   constructor(props) {
