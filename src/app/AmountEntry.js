@@ -27,15 +27,17 @@ class AmountEntry extends React.Component {
   onChangeAmount(e) {
     let amount = e.target.value;
 
-    if ((`${amount}`).indexOf('.') === (amount.length - 1)) {
-      amount += '00';
-    } else if (!((`${amount}`).indexOf('.') > -1)) {
-      amount += '.00';
-    } else if (isNaN(amount * 1)) {
-      return;
-    }
+    // if ((`${amount}`).indexOf('.') === (amount.length - 1)) {
+    //   amount += '00';
+    // } else if (!((`${amount}`).indexOf('.') > -1)) {
+    //   amount += '.00';
+    // } else if (isNaN(amount * 1)) {
+    //   return;
+    // }
 
-    amount = (amount.replace('.', '') * 1);
+    // amount = (amount.replace('.', '') * 1);
+
+    amount *= 100;
 
     const selected = Object.assign({}, this.props.selected);
     selected.amount = amount;
@@ -74,11 +76,11 @@ class AmountEntry extends React.Component {
 
     amount /= 100;
 
-    if (!((`${amount}`).indexOf('.') > -1)) {
-      amount += '.00';
-    } else {
-      amount = amount.toFixed(2);
-    }
+    // if (!((`${amount}`).indexOf('.') > -1)) {
+    //   amount += '.00';
+    // } else {
+    //   amount = amount.toFixed(2);
+    // }
 
     const { desc, mode } = selected.setup;
     const isLocked = selected.setup.is_locked;

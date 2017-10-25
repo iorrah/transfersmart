@@ -123,7 +123,8 @@ class Conversor extends React.Component {
         specTo.setup = Object.assign({}, this.state.to.setup);
 
         specTo.amount = null;
-        let newToSpec = this.getConvertedSpec.call(this, specTo);
+        let newToSpec = Object.assign({}, this.getConvertedSpec.call(this, specTo));
+        console.log('when this was created, the value was ' + newToSpec.amount);
         return this.setState({ to: newToSpec }, this.agnosticFromAndToLog);
 
       }.bind(this));
@@ -163,11 +164,20 @@ class Conversor extends React.Component {
       });
     },
 
-    getLastChangesAnalysis() {
+    getLastChangesAnalysis(spec = null) {
+      // debugger
+
       const { history } = this.state;
       const { length } = history;
-      const penultimate = history[length - 2].spec;
-      const last = history[length - 1].spec;
+      let penultimate, last;
+
+      if (spec) {
+        penultimate = history[length - 1].spec;
+        last = spec;
+      } else {
+        penultimate = history[length - 2].spec;
+        last = history[length - 1].spec;
+      }
 
       const isFromCurrEqual = (penultimate.from.currency === last.from.currency);
       const isFromAmountEqual = (penultimate.from.amount === last.from.amount);
@@ -188,46 +198,72 @@ class Conversor extends React.Component {
       };
     },
 
-    hasChangedAmount() {
-      const wasEqual = this
-        .history
-        .getLastChangesAnalysis
-        .call(this)
-        .was_equal;
+    // hasChangedAmount() {
+    //   const wasEqual = this
+    //     .history
+    //     .getLastChangesAnalysis
+    //     .call(this)
+    //     .was_equal;
 
-      return (wasEqual.from.currency && (!wasEqual.from.amount)) ||
-             (wasEqual.to.currency && (!wasEqual.to.amount));
-    },
+    //   return (wasEqual.from.currency && (!wasEqual.from.amount)) ||
+    //          (wasEqual.to.currency && (!wasEqual.to.amount));
+    // },
 
-    hasChangedCurrency() {
-      const wasEqual = this
-        .history
-        .getLastChangesAnalysis
-        .call(this)
-        .was_equal;
+    // hasChangedCurrency() {
+    //   const wasEqual = this
+    //     .history
+    //     .getLastChangesAnalysis
+    //     .call(this)
+    //     .was_equal;
 
-      return ((!wasEqual.from.currency) && wasEqual.from.amount) ||
-             ((!wasEqual.to.currency) && wasEqual.to.amount);
-    },
+    //   return ((!wasEqual.from.currency) && wasEqual.from.amount) ||
+    //          ((!wasEqual.to.currency) && wasEqual.to.amount);
+    // },
 
-    getUpdatedAndOutdatedModes() {
+    getUpdatedAndOutdatedModes(specs) {
       let outdatedMode, updatedMode;
 
-      // debugger
+      // const iOutdatedMode = specs.outdatedSpec.setup.mode;
+      // const iUpdatedMode = specs.updatedSpec.setup.mode;
+
+      // const temporaryHistory = {
+      //   [iOutdatedMode]: specs.outdatedSpec,
+      //   [iUpdatedMode]: specs.updatedSpec
+      // };
+
+      const temporaryHistory = Object.assign({}, specs);
 
       const wasEqual = this
         .history
         .getLastChangesAnalysis
-        .call(this)
+        .call(this, temporaryHistory)
         .was_equal;
 
       if (!wasEqual.to.currency) {
+
+        /*
+          The user has updated
+          the 'to' dropdown select
+        */
+
         outdatedMode = 'to';
         updatedMode = 'from';
       } else if (wasEqual.from.currency && wasEqual.from.amount) {
+
+        /*
+          The user has updated
+          the 'to' input
+        */
+
         outdatedMode = 'from';
         updatedMode = 'to';
       } else if (wasEqual.to.currency && wasEqual.to.amount) {
+
+        /*
+          The user has updated
+          the 'from' input
+        */
+
         outdatedMode = 'to';
         updatedMode = 'from';
       }
@@ -253,17 +289,17 @@ class Conversor extends React.Component {
     // debugger
 
     const { amount, currency, rate } = spec;
-    const { mode } = spec.setup;
+    const { mode, iso } = spec.setup;
     const invertedMode = this.invertMode(mode);
     let selected = this.state[mode];
 
     selected.amount = amount;
     selected.currency = currency;
     selected.rate = rate;
+    selected.iso = iso;
 
-    let toReturn = this.justConvert(selected, this.state[invertedMode]);
-
-    this.setState({ [mode]: toReturn }, this.agnosticFromAndToLog);
+    let specs = this.convert(selected, this.state[invertedMode]);
+    this.setState({ specs }, this.agnosticFromAndToLog);
   }
 
   justConvert(outdatedSpec, updatedSpec) {
@@ -274,27 +310,40 @@ class Conversor extends React.Component {
 
     let toReturn = Object.assign({}, outdatedSpec);
 
-    toReturn.amount = this[method](updatedSpec, outdatedSpec);
+    toReturn.amount = this[method](outdatedSpec, updatedSpec);
 
     return toReturn;
   }
 
-  convert() {
+  convert(iOutdatedSpec, iUpdatedSpec) {
+
+
+    let iOutdatedMode = iOutdatedSpec.setup.mode;
+    let iUpdatedMode = iUpdatedSpec.setup.mode;
+
+    let specs = {
+      [iOutdatedMode]: iOutdatedSpec,
+      [iUpdatedMode]: iUpdatedSpec
+    };
+
     let {
       outdatedMode,
       updatedMode
-    } = this.history.getUpdatedAndOutdatedModes.call(this);
+    } = this.history.getUpdatedAndOutdatedModes.call(this, specs);
 
-    let updatedSpec = this.state[updatedMode];
-    let outdatedSpec = this.state[outdatedMode];
+    let outdatedSpec = specs[outdatedMode];
+    let updatedSpec = specs[updatedMode];
+
+    outdatedSpec.setup.mode = outdatedMode;
+    updatedSpec.setup.mode = updatedMode;
+
     let method = `convertThe${capitalize(outdatedMode)}Field`;
+    outdatedSpec.amount = this[method](outdatedSpec, updatedSpec);
 
-    outdatedSpec.amount = this[method](updatedSpec, outdatedSpec);
-
-    this.setState(
-      { [outdatedMode]: outdatedSpec },
-      this.agnosticFromAndToLog
-    );
+    return {
+      [outdatedMode]: outdatedSpec,
+      [updatedMode]: updatedSpec,
+    };
   }
 
   agnosticFromAndToLog(from = null, to = null) {
@@ -304,19 +353,38 @@ class Conversor extends React.Component {
       log = { from, to };
     } else {
       log = {
-        from: this.state.from,
-        to: this.state.to
+        from: Object.assign({}, this.state.from),
+        to: Object.assign({}, this.state.to)
       }
     }
 
     this.history.save.call(this, log);
   }
 
-  convertTheFromField(updated, outdated) {
+  convertTheFromField(outdated, updated) {
+    /*
+
+      should only be used after:
+
+        - 'from' select change (x)
+        - 'to' input change
+
+   */
+
+
     return updated.amount / updated.rate;
   }
 
-  convertTheToField(updated, outdated) {
+  convertTheToField(outdated, updated) {
+    /*
+
+      should only be used after:
+
+        - 'from' input change
+        - 'to' select change
+
+   */
+
     return updated.amount * outdated.rate;
   }
 
