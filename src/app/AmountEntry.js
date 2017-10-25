@@ -6,12 +6,6 @@ import SelectRate from './SelectRate';
 import './AmountEntry.css';
 
 class AmountEntry extends React.Component {
-  propTypes: {
-    selected: PropTypes.object,
-    onChange: PropTypes.func,
-    rates: PropTypes.array,
-  }
-
   constructor(props) {
     super(props);
 
@@ -27,16 +21,17 @@ class AmountEntry extends React.Component {
 
   onChangeAmount(e) {
     let amount = e.target.rawValue;
+
+    if (amount === this.props.selected.amount) {
+      return;
+    }
+
     const selected = Object.assign({}, this.props.selected);
     selected.amount = amount;
     this.props.onChange(selected);
   }
 
   onChangeCurrency(object) {
-    if (!(object || object.value)) {
-      return;
-    }
-
     const selected = Object.assign({}, this.props.selected);
     selected.currency = object.value;
     selected.rate = object.rate;
@@ -104,6 +99,12 @@ class AmountEntry extends React.Component {
       </div>
     );
   }
+};
+
+AmountEntry.propTypes = {
+  onChange: PropTypes.func,
+  rates: PropTypes.array,
+  selected: PropTypes.object,
 }
 
 export default AmountEntry;

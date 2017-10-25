@@ -39,7 +39,7 @@ class Conversor extends React.Component {
         } else {
           return reject();
         }
-      }, 1000);
+      }, 0);
     });
   }
 
@@ -76,7 +76,7 @@ class Conversor extends React.Component {
           this.setState({ rates, from, to }, this.agnosticFromAndToLog);
 
           return resolve(true);
-        }, 1000);
+        }, 0);
       }).then(function(something) {
         let specTo = Object.assign({}, this.state.rates[0]);
         specTo.setup = Object.assign({}, this.state.to.setup);
@@ -313,18 +313,14 @@ class Conversor extends React.Component {
   renderAmountEntry(mode) {
     return (
       <AmountEntry
-        selected={this.state[mode]}
-        rates={this.state.rates}
         onChange={this.onChange}
+        rates={this.state.rates}
+        selected={this.state[mode]}
       />
     );
   }
 
   render() {
-    if (!(this.state.from.setup || this.state.to.setup)) {
-      return;
-    }
-
     return (
       <div className="conversor">
         {this.renderAmountEntry('from')}
@@ -332,6 +328,6 @@ class Conversor extends React.Component {
       </div>
     );
   }
-}
+};
 
 export default Conversor;
