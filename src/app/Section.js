@@ -3,7 +3,7 @@ import Ad from './Ad';
 import Conversor from './Conversor';
 import './Section.css';
 
-const Section = function() {
+const Section = function Section() {
   return (
     <section>
       <div className="row wrapper">

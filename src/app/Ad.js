@@ -1,6 +1,6 @@
 import React from 'react';
 
-let Ad = function() {
+const Ad = function Ad() {
   return (
     <div>
       <h1>
@@ -27,6 +27,6 @@ let Ad = function() {
       </div>
     </div>
   );
-}
+};
 
 export default Ad;

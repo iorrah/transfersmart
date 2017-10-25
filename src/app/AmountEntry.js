@@ -9,7 +9,6 @@ class AmountEntry extends React.Component {
     selected: PropTypes.object,
     onChange: PropTypes.func,
     rates: PropTypes.array,
-    ['rates.map']: PropTypes.func,
   }
 
   constructor(props) {
