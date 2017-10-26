@@ -167,6 +167,12 @@
       display: inline-block;
     }
 
+    .Select-placeholder {
+      color: rgba(255, 255, 255, 0.51);
+      font-weight: 700;
+      padding: 1.2rem 1rem;
+    }
+
     .Select-currency-name { min-width: 2.2rem; }
     .Select-flag { margin-left: .5rem; }
 

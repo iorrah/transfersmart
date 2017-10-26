@@ -1,8 +1,7 @@
 import React from 'react';
 import AmountEntry from './AmountEntry';
 import capitalize from '../utils/capitalize';
-import Mock from '../utils/Mock';
-import API from './API';
+import { fetchDataIfNeeded } from './FetchData';
 
 class Conversor extends React.Component {
   constructor(props) {
@@ -22,7 +21,8 @@ class Conversor extends React.Component {
         rate: '',
         setup: {},
       },
-      history: []
+      history: [],
+      errors: [],
     };
 
     this.convert = this.convert.bind(this);
@@ -32,64 +32,78 @@ class Conversor extends React.Component {
     this.agnosticFromAndToLog = this.agnosticFromAndToLog.bind(this);
   }
 
-  fetchMockData() {
-    return new Promise((resolve, reject) => {
-      setTimeout(function() {
-        if (Mock.base) {
-          return resolve(Mock);
-        } else {
-          return reject();
-        }
-      }, 0);
-    });
-  }
-
   setInitialState(promise) {
-    promise.then(function(data) {
-      return new Promise((resolve, reject) => {
-        return setTimeout(() => {
-          let from = {
-            currency: data.base,
-            rate: 1,
-            iso: (data.base || '').substr(0, 2).toLowerCase(),
-          };
+    promise.then((response) => {
+        if (!(response && response.json)) {
+          return response;
+        } else if (response.json) {
+          return response.json();
+        } else {
+          localStorage.removeItem('TS_API');
+          throw new Error('Error: could not find a valid data source');
+        }
+      })
+      .catch((err) => {
+        this.state.errors.push(err);
+      })
+      .then(function(data) {
+        let rates = [];
 
-          let rates = data.rates;
-          rates.push(Object.assign({}, from));
+        for (var key in data.rates) {
+          rates.push({
+            currency: key,
+            iso: (key || '').substr(0, 2).toLowerCase(),
+            rate: data.rates[key],
+          });
+        };
 
-          from.amount = 1;
-          let to = Object.assign({}, from);
+        if (!localStorage.getItem('TS_API')) {
+          localStorage.setItem('TS_API', JSON.stringify(data));
+        }
 
-          from.setup = new this.CreateSetupAttr(
-            'You wanto to convert:',
-            true,
-            'from',
-            from.iso
-          );
+        return new Promise((resolve, reject) => {
+          return setTimeout(() => {
+            let from = {
+              currency: data.base,
+              rate: 1,
+              iso: (data.base || '').substr(0, 2).toLowerCase(),
+            };
 
-          to.setup = new this.CreateSetupAttr(
-            'To this amount:',
-            false,
-            'to',
-            to.iso
-          );
+            rates.push(Object.assign({}, from));
 
-          this.setState({ rates, from, to }, this.agnosticFromAndToLog);
+            from.amount = 1;
+            let to = Object.assign({}, from);
 
-          return resolve(true);
-        }, 0);
-      }).then(function(something) {
-        let specTo = Object.assign({}, this.state.rates[0]);
-        specTo.setup = Object.assign({}, this.state.to.setup);
-        specTo.amount = null;
-        let newToSpec = Object.assign({}, this.getConvertedSpec.call(this, specTo));
-        return this.setState({ to: newToSpec }, this.agnosticFromAndToLog);
-      }.bind(this));
+            from.setup = new this.CreateSetupAttr(
+              'You wanto to convert:',
+              true,
+              'from',
+              from.iso
+            );
+
+            to.setup = new this.CreateSetupAttr(
+              'To this amount:',
+              false,
+              'to',
+              to.iso
+            );
+
+            this.setState({ rates, from, to }, this.agnosticFromAndToLog);
+
+            return resolve(true);
+          }, 0);
+        }).then(function(something) {
+          let specTo = Object.assign({}, this.state.rates[0]);
+          specTo.setup = Object.assign({}, this.state.to.setup);
+          specTo.amount = null;
+          let newToSpec = Object.assign({}, this.getConvertedSpec.call(this, specTo));
+          return this.setState({ to: newToSpec }, this.agnosticFromAndToLog);
+        }.bind(this));
     }.bind(this));
   }
 
   componentDidMount() {
-    this.setInitialState(this.fetchMockData());
+    this.setInitialState(fetchDataIfNeeded.call(this));
   }
 
   CreateSetupAttr(desc, locked, mode, iso) {
