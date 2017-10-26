@@ -2,7 +2,7 @@
   <a href="http://www.iorrah.com/transfersmart"><img width="600" src="http://www.iorrah.com/transfersmart/images/brand/logo-radius.png" alt="TransferSmart Logo" title="TransferSmart Logo"></a>
 </p>
 
-## TransferSmart
+<h1 align="center">TransferSmart</h1>
 
 The smart path to trustful currency conversion.
 
@@ -34,3 +34,26 @@ Your app is ready to be deployed!
 #### `npm run deploy`
 
 This builds a minified version of the app and deploys it using GitHub Pages.
+
+#### Licence
+
+This project has been realeased under the MIT Licence.
+
+#### Disclaimer
+
+Please note: this is a Open Source project that 
+has been created and is maintaned solely for 
+educational purposes. None of the data hereby 
+available should by any means, be considered a 
+valid source of truth. Refear to our 
+[DISCLAIMER](Disclaimer) 
+page for further details.
+
+#### Contributing
+
+Pull Requests are welcome. Please, see the [CONTRIBUTING](Contributing) 
+file and the [issues page](https://github.com/iorrah/transfersmart/issues) 
+for further reference.
+
+[Disclaimer]: https://github.com/iorrah/transfersmart/blob/master/DISCLAIMER.md
+[Contributing]: https://github.com/iorrah/transfersmart/blob/master/CONTRIBUTING.md
