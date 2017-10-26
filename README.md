@@ -46,13 +46,13 @@ has been created and is maintaned solely for
 educational purposes. None of the data hereby 
 available should by any means, be considered a 
 valid source of truth. Refear to our 
-[DISCLAIMER](Disclaimer) 
+[DISCLAIMER](DISCLAIMER.md) 
 page for further details.
 
 #### Contributing
 
-Pull Requests are welcome. Please, see the [CONTRIBUTING](Contributing) 
-file and the [issues page](https://github.com/iorrah/transfersmart/issues) 
+Pull Requests are welcome. Please, see the [CONTRIBUTING](CONTRIBUTING.md) 
+page and the [issues](https://github.com/iorrah/transfersmart/issues) page
 for further reference.
 
 [Disclaimer]: https://github.com/iorrah/transfersmart/blob/master/DISCLAIMER.md
