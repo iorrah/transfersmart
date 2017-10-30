@@ -6,20 +6,20 @@ import { FaExchange, FaCalendarO } from 'react-icons/lib/fa';
 class RateDetails extends React.Component {
   render() {
     const { from, to } = this.props;
-    const updatedAt  = this.props.date;
+    const updatedAt = this.props.date;
 
     if ((!from) || (!to)) {
       return null;
     }
 
-    let procedure = `${from.rate} ${from.currency}`
+    const procedure = `${from.rate} ${from.currency}`
       + ` @ ${to.rate} ${to.currency}`;
 
-    var date = 'Rates from:'
+    const date = 'Rates from:'
       + ` ${formatter.date.dmY(updatedAt)}`;
 
     return (
-      <div className='rate-details'>
+      <div className="rate-details">
         <p>
           <FaExchange /> {procedure}
         </p>
@@ -30,6 +30,6 @@ class RateDetails extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default RateDetails;

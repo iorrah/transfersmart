@@ -1,5 +1,5 @@
-let pad = function(n, width, z) {
-  n = n + '';
+const pad = function (n, width, z) {
+  n += '';
   width = width || 2;
   z = z || '0';
 

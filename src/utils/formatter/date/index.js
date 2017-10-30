@@ -1,5 +1,5 @@
 import dmY from './dmY';
 
-let date = { dmY };
+const date = { dmY };
 
 export default date;

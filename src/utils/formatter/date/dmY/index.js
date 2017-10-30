@@ -1,6 +1,6 @@
 import string from '../../string';
 
-let dmY = function(date) {
+const dmY = function (date) {
   const object = new Date(date);
 
   const day = object.getDate();
