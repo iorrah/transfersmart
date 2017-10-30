@@ -20,7 +20,7 @@ class AmountEntry extends React.Component {
   }
 
   onChangeAmount(e) {
-    let amount = e.target.rawValue;
+    const amount = e.target.rawValue;
 
     if (amount === this.props.selected.amount) {
       return;
@@ -54,7 +54,7 @@ class AmountEntry extends React.Component {
       return null;
     }
 
-    let { amount, currency } = selected;
+    const { amount, currency } = selected;
     const { desc, mode } = selected.setup;
     const isLocked = selected.setup.is_locked;
 
@@ -76,7 +76,7 @@ class AmountEntry extends React.Component {
         <p>{desc}</p>
 
         <Cleave
-          options={ { numeral: true } }
+          options={{ numeral: true }}
           type="text"
           name={`amount-${mode}`}
           value={amount}
@@ -99,12 +99,12 @@ class AmountEntry extends React.Component {
       </div>
     );
   }
-};
+}
 
 AmountEntry.propTypes = {
   onChange: PropTypes.func,
   rates: PropTypes.array,
   selected: PropTypes.object,
-}
+};
 
 export default AmountEntry;

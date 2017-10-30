@@ -9,7 +9,7 @@ import {
 
 import './Footer.css';
 
-const Footer = function() {
+const Footer = function () {
   return (
     <footer>
       <div className="links wrapper">
