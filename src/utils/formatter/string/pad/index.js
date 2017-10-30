@@ -1,11 +1,11 @@
-const pad = function (n, width, z) {
-  n += '';
+const pad = function (number, width, filling) {
+  number += '';
   width = width || 2;
-  z = z || '0';
+  filling = filling || '0';
 
-  return n.length >= width ?
-    n :
-    new Array(width - n.length + 1).join(z) + n;
+  return number.length >= width ?
+    number :
+    new Array(width - number.length + 1).join(filling) + number;
 };
 
 export default pad;
