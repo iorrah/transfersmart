@@ -1,6 +1,7 @@
 import React from 'react';
 import AmountEntry from './AmountEntry';
-import capitalize from '../utils/capitalize';
+import RateDetails from './RateDetails';
+import capitalize from '../utils/formatter/string/capitalize';
 import { fetchDataIfNeeded } from './FetchData';
 
 class Conversor extends React.Component {
@@ -21,6 +22,7 @@ class Conversor extends React.Component {
         rate: '',
         setup: {},
       },
+      date: '',
       history: [],
       errors: [],
     };
@@ -47,7 +49,8 @@ class Conversor extends React.Component {
         this.state.errors.push(err);
       })
       .then(function(data) {
-        let rates = [];
+        let rates = [],
+            { date } = data;
 
         for (var key in data.rates) {
           rates.push({
@@ -88,7 +91,8 @@ class Conversor extends React.Component {
               to.iso
             );
 
-            this.setState({ rates, from, to }, this.agnosticFromAndToLog);
+            const newState = { rates, date, from, to };
+            this.setState(newState, this.agnosticFromAndToLog);
 
             return resolve(true);
           }, 0);
@@ -339,6 +343,13 @@ class Conversor extends React.Component {
     return (
       <div className="conversor">
         {this.renderAmountEntry('from')}
+
+        <RateDetails
+          date={this.state.date}
+          from={this.state.from}
+          to={this.state.to}
+        />
+
         {this.renderAmountEntry('to')}
       </div>
     );
