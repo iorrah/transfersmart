@@ -41,7 +41,7 @@ class Conversor extends React.Component {
         } else if (response.json) {
           return response.json();
         } else {
-          localStorage.removeItem('TS_API');
+          sessionStorage.removeItem('TS_API');
           throw new Error('Error: could not find a valid data source');
         }
       })
@@ -60,8 +60,8 @@ class Conversor extends React.Component {
           });
         };
 
-        if (!localStorage.getItem('TS_API')) {
-          localStorage.setItem('TS_API', JSON.stringify(data));
+        if (!sessionStorage.getItem('TS_API')) {
+          sessionStorage.setItem('TS_API', JSON.stringify(data));
         }
 
         return new Promise((resolve, reject) => {
