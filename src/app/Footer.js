@@ -68,7 +68,7 @@ const Footer = function () {
           <li><span /></li>
 
           <li>
-            <a href="https://github.com/iorrah/transfersmart" target="_blank">
+            <a href="https://github.com/iorrah/transfersmart" target="_blank" rel="noopener noreferrer">
               <span className="fa-stack">
                 <FaSquare />
                 <FaGithub />
