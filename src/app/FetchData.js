@@ -6,10 +6,12 @@ const fetchData = function () {
 };
 
 const fetchDataIfNeeded = function () {
-  if (localStorage.getItem('TS_API')) {
+  const sessionStorageData = sessionStorage.getItem('TS_API');
+
+  if (sessionStorageData) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const data = JSON.parse(localStorage.getItem('TS_API'));
+        const data = JSON.parse(sessionStorageData);
         return resolve(data);
       }, 100);
     });
