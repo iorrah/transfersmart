@@ -27,8 +27,10 @@ header {
   a {
     &,
     &:hover,
-    &:focus {
+    &:focus,
+    &:visited {
       text-decoration: none;
+      color: #fff;
     }
   }
 
