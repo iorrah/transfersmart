@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   FaFacebook,
   FaTwitter,
   FaLinkedin,
+  FaGithub,
   FaSquare,
 } from 'react-icons/lib/fa';
 
@@ -15,56 +17,61 @@ const Footer = function () {
       <div className="links wrapper">
         <ul className="pages">
           <li>
-            <a href="/">FAQ</a>
+            <Link to="/AboutUs">About us</Link>
           </li>
 
           <li><span>&bull;</span></li>
 
           <li>
-            <a href="/">Contac</a>
+            <Link to="/">FAQ</Link>
           </li>
 
           <li><span>&bull;</span></li>
 
           <li>
-            <a href="/">Jobs</a>
-          </li>
-
-          <li><span>&bull;</span></li>
-
-          <li>
-            <a href="/">Blog</a>
+            <Link to="/">Blog</Link>
           </li>
         </ul>
 
         <ul className="social">
           <li>
-            <a href="/">
+            <Link to="/">
               <span className="fa-stack">
                 <FaSquare />
                 <FaFacebook />
               </span>
-            </a>
+            </Link>
           </li>
 
           <li><span /></li>
 
           <li>
-            <a href="/">
+            <Link to="/">
               <span className="fa-stack">
                 <FaSquare />
                 <FaTwitter />
               </span>
-            </a>
+            </Link>
           </li>
 
           <li><span /></li>
 
           <li>
-            <a href="/">
+            <Link to="/">
               <span className="fa-stack">
                 <FaSquare />
                 <FaLinkedin />
+              </span>
+            </Link>
+          </li>
+
+          <li><span /></li>
+
+          <li>
+            <a href="https://github.com/iorrah/transfersmart" target="_blank">
+              <span className="fa-stack">
+                <FaSquare />
+                <FaGithub />
               </span>
             </a>
           </li>
