@@ -1,21 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 const Header = function () {
   return (
     <header>
       <div className="wrapper">
-        <a href="/">
+        <Link to="/">
           <h1>TransferSmart</h1>
-        </a>
+        </Link>
 
         <ul>
-          <li><a href="/">About us</a></li>
-          <li><a href="/">Rates</a></li>
-          <li><a href="/">Login</a></li>
+          <li><Link to="/AboutUs">About us</Link></li>
+          <li><Link to="/">Rates</Link></li>
+          <li><Link to="/">Log In</Link></li>
 
           <li className="highlight">
-            <a href="/">Sign Up</a>
+            <Link to="/">Sign Up</Link>
           </li>
         </ul>
       </div>
