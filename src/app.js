@@ -13,7 +13,7 @@ import AboutUs from './app/AboutUs';
 import Footer from './app/Footer';
 
 const App = () => (
-  <Router baseName={appSettings.base_name}>
+  <Router basename={appSettings.base_name}>
     <div className="app">
       <Header />
       <Route exact path="/" component={Section} />
