@@ -73,12 +73,13 @@ class AmountEntry extends React.Component {
 
     return (
       <div className={classNameAmountEntry}>
-        <p>{desc}</p>
+        <label htmlFor={`amount-${mode}`}>{desc}</label>
 
         <Cleave
           options={{ numeral: true }}
           type="text"
           name={`amount-${mode}`}
+          id={`amount-${mode}`}
           value={amount}
           onChange={this.onChangeAmount}
           onFocus={this.onFocus}

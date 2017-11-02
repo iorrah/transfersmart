@@ -32,7 +32,7 @@
     }
   }
 
-  p {
+  label {
     color: inherit;
     font-weight: 400;
     font-size: .7rem;
@@ -40,6 +40,7 @@
     position: absolute;
     top: .7rem;
     left: .8rem;
+    cursor: text;
   }
 
   input[type="text"] {
