@@ -3,6 +3,7 @@
   padding: 9rem 0 0;
   background-color: #f9f9f9;
   overflow: auto;
+  color: #111;
 
   .wall {
     position: absolute;
@@ -57,6 +58,8 @@
     &:hover {
       color: #5103da;
     }
+
+    &.btn { color: #111; }
   }
 
   code {
