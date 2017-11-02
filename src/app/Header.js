@@ -12,6 +12,7 @@ const Header = function () {
 
         <ul>
           <li><Link to="/AboutUs">About us</Link></li>
+          <li><Link to="/">FAQ</Link></li>
           <li><Link to="/">Rates</Link></li>
           <li><Link to="/">Log In</Link></li>
 

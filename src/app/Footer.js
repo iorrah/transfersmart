@@ -1,13 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import {
-  FaFacebook,
-  FaTwitter,
-  FaLinkedin,
   FaGithub,
   FaSquare,
-} from 'react-icons/lib/fa';
+  FaBalanceScale,
+  FaCodeFork, } from 'react-icons/lib/fa';
 
 import './Footer.css';
 
@@ -17,56 +14,29 @@ const Footer = function () {
       <div className="links wrapper">
         <ul className="pages">
           <li>
-            <Link to="/AboutUs">About us</Link>
+            <a href="https://github.com/iorrah/transfersmart/pulls" title="See the Pull Requests page on GitHub" target="_blank" rel="noopener noreferrer">
+              Pull Requests
+            </a>
           </li>
 
           <li><span>&bull;</span></li>
 
           <li>
-            <Link to="/">FAQ</Link>
+            <a href="https://github.com/iorrah/transfersmart/issues" title="See the Issues page on GitHub" target="_blank" rel="noopener noreferrer">
+              Issues
+            </a>
           </li>
 
           <li><span>&bull;</span></li>
 
           <li>
-            <Link to="/">Blog</Link>
+            <a href="https://github.com/iorrah/transfersmart/blob/master/DISCLAIMER.md" title="See the Disclaimer page on GitHub" target="_blank" rel="noopener noreferrer">
+              Disclaimer
+            </a>
           </li>
         </ul>
 
         <ul className="social">
-          <li>
-            <Link to="/">
-              <span className="fa-stack">
-                <FaSquare />
-                <FaFacebook />
-              </span>
-            </Link>
-          </li>
-
-          <li><span /></li>
-
-          <li>
-            <Link to="/">
-              <span className="fa-stack">
-                <FaSquare />
-                <FaTwitter />
-              </span>
-            </Link>
-          </li>
-
-          <li><span /></li>
-
-          <li>
-            <Link to="/">
-              <span className="fa-stack">
-                <FaSquare />
-                <FaLinkedin />
-              </span>
-            </Link>
-          </li>
-
-          <li><span /></li>
-
           <li>
             <a href="https://github.com/iorrah/transfersmart" target="_blank" rel="noopener noreferrer">
               <span className="fa-stack">
@@ -75,11 +45,33 @@ const Footer = function () {
               </span>
             </a>
           </li>
+
+          <li>
+            <a href="https://github.com/iorrah/transfersmart/blob/master/LICENSE" title="See the License page on GitHub" target="_blank" rel="noopener noreferrer">
+              <span className="fa-stack">
+                <FaSquare />
+                <FaBalanceScale />
+              </span>
+            </a>
+          </li>
+
+          <li>
+            <a href="https://github.com/iorrah/transfersmart/blob/master/CONTRIBUTING.md" title="See the Contributing page on GitHub" target="_blank" rel="noopener noreferrer">
+              <span className="fa-stack">
+                <FaSquare />
+                <FaCodeFork />
+              </span>
+            </a>
+          </li>
         </ul>
       </div>
 
       <div className="copyright">
-        © 2017 Copyright TransferSmart
+        © 2017 Copyright&nbsp;
+
+        <a href="http://www.iorrah.com/transfersmart">
+          TransferSmart
+        </a>
       </div>
     </footer>
   );
