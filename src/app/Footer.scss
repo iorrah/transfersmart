@@ -102,6 +102,16 @@ footer {
     background-color: rgba(0, 0, 0, .45);
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.14),
                 0 -2px 4px rgba(0, 0, 0, 0.28);
+
+    a {
+      &,
+      &:hover,
+      &:focus,
+      &:visited {
+        color: inherit;
+        font-weight: 600;
+      }
+    }
   }
 }
 

@@ -2,7 +2,7 @@
   <a href="http://www.iorrah.com/transfersmart"><img width="600" src="http://www.iorrah.com/transfersmart/images/brand/logo-radius.png" alt="TransferSmart Logo" title="TransferSmart Logo"></a>
 </p><br />
 
-The smart path to trustful currency conversion.
+A smart path to usable currency conversion.
 
 ## Available Scripts
 

@@ -12,11 +12,12 @@ const Header = function () {
 
         <ul>
           <li><Link to="/AboutUs">About us</Link></li>
-          <li><Link to="/">Rates</Link></li>
-          <li><Link to="/">Log In</Link></li>
+          <li><Link to="/FAQ">FAQ</Link></li>
+          <li><Link to="/Rates">Rates</Link></li>
+          <li><Link to="/LogIn">Log In</Link></li>
 
           <li className="highlight">
-            <Link to="/">Sign Up</Link>
+            <Link to="/SignUp">Sign Up</Link>
           </li>
         </ul>
       </div>
