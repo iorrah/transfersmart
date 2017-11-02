@@ -15,7 +15,7 @@ class RateDetails extends React.Component {
     const procedure = `${from.rate} ${from.currency}`
       + ` equals to ${to.rate} ${to.currency}`;
 
-    const date = 'These rates are from:'
+    const date = 'These are rates from:'
       + ` ${formatter.date.dmY(updatedAt)}`;
 
     return (
