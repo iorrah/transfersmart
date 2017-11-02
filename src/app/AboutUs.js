@@ -1,10 +1,11 @@
 import React from 'react';
 import './AboutUs.css';
+import '../styles/stationery.css';
 
 const AboutUs = function () {
   return (
-    <div className="about-us">
-      <div className="support"></div>
+    <div className="about-us stationery">
+      <div className="wall"></div>
 
       <div className="wrapper papper">
         <h1>About Us</h1>
