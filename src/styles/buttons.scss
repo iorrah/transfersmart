@@ -1,0 +1,42 @@
+.btn {
+  background-color: purple;
+  border: .12rem solid purple;
+  padding: 1rem 2rem;
+  border-radius: .12rem;
+  margin: 0;
+  color: #fff;
+  font-size: .75rem;
+  line-height: normal;
+  cursor: pointer;
+  transition: all .2s;
+
+  &:hover {
+    background-color: red;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &.btn-white {
+    background-color: #f9f9f9;
+    border-color: #eee;
+    color: inherit;
+
+    &:hover {
+      background-color: #eee;
+    }
+  }
+
+  &.btn-circular {
+    border-radius: 100%;
+  }
+
+  &.btn-rz-1 {
+    width: 4.4rem;
+    height: 4.4rem;
+    padding: 0 .2rem .4rem 0;
+    font-weight: 100;
+    font-size: 2rem;
+  }
+}
