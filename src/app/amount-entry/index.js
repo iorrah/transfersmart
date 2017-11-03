@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Cleave from 'cleave.js/react';
 import 'react-select/dist/react-select.css';
 import SelectRate from '../select-rate';
@@ -100,12 +99,6 @@ class AmountEntry extends React.Component {
       </div>
     );
   }
-}
-
-AmountEntry.propTypes = {
-  onChange: PropTypes.func,
-  rates: PropTypes.array,
-  selected: PropTypes.object,
 };
 
 export default AmountEntry;
