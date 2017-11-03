@@ -1,7 +1,7 @@
 import React from 'react';
-import './RateDetails.css';
-import formatter from '../utils/formatter';
 import { FaExchange, FaCalendarO } from 'react-icons/lib/fa';
+import formatter from '../../utils/formatter';
+import './styles.css';
 
 class RateDetails extends React.Component {
   render() {

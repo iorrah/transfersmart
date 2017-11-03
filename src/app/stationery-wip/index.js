@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaCog, FaAngleLeft } from 'react-icons/lib/fa';
-import './StationeryWIP.css';
+import './styles.css';
 
 const StationeryWIP = function () {
   return (
