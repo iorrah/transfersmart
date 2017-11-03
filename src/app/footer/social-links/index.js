@@ -6,37 +6,41 @@ import {
   FaBalanceScale,
   FaCodeFork, } from 'react-icons/lib/fa';
 
-const SocialLinks = function () {
-  return (
-    <ul className="social">
+class SocialLinks extends React.Component {
+  liItem(href, title, icon) {
+    return (
       <li>
-        <a href="https://github.com/iorrah/transfersmart" target="_blank" rel="noopener noreferrer">
+        <a href={href} target="_blank" title={title} rel="noopener noreferrer">
           <span className="fa-stack">
-            <FaSquare />
-            <FaGithub />
+            <FaSquare /> {icon}
           </span>
         </a>
       </li>
+    );
+  }
 
-      <li>
-        <a href="https://github.com/iorrah/transfersmart/blob/master/LICENSE" title="See the License page on GitHub" target="_blank" rel="noopener noreferrer">
-          <span className="fa-stack">
-            <FaSquare />
-            <FaBalanceScale />
-          </span>
-        </a>
-      </li>
+  render() {
+    const ghProjectUrl = 'https://github.com/iorrah/transfersmart';
 
-      <li>
-        <a href="https://github.com/iorrah/transfersmart/blob/master/CONTRIBUTING.md" title="See the Contributing page on GitHub" target="_blank" rel="noopener noreferrer">
-          <span className="fa-stack">
-            <FaSquare />
-            <FaCodeFork />
-          </span>
-        </a>
-      </li>
-    </ul>
-  );
+    return (
+      <ul className="social">
+        { this.liItem(
+          `${ghProjectUrl}`,
+          'See this project on GitHub',
+          <FaGithub />) }
+
+        { this.liItem(
+          `${ghProjectUrl}/blob/master/LICENSE`,
+          'See the License page on GitHub',
+          <FaBalanceScale />) }
+
+        { this.liItem(
+          `${ghProjectUrl}/blob/master/CONTRIBUTING.md`,
+          'See the Contributing page on GitHub',
+          <FaCodeFork />) }
+      </ul>
+    );
+  };
 };
 
 export default SocialLinks;
