@@ -2,7 +2,13 @@
   <a href="http://www.iorrah.com/transfersmart"><img width="600" src="http://www.iorrah.com/transfersmart/images/brand/logo-radius.png" alt="TransferSmart Logo" title="TransferSmart Logo"></a>
 </p><br />
 
-A smart path to usable currency conversion.
+<p align="center">
+  [![Maintainability](https://api.codeclimate.com/v1/badges/0a947ed888e2932d48f6/maintainability)](https://codeclimate.com/github/iorrah/transfersmart/maintainability)
+</p><br />
+
+<p align="center">
+  A smart path to usable currency conversion.
+</p>
 
 ## Available Scripts
 
