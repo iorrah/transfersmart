@@ -2,6 +2,7 @@ import React from 'react';
 import AmountEntry from '../amount-entry';
 import RateDetails from '../rate-details';
 import capitalize from '../../utils/formatter/string/capitalize';
+import memory from '../memory';
 import { fetchDataIfNeeded } from '../fetch-data';
 
 class Conversor extends React.Component {
@@ -23,7 +24,7 @@ class Conversor extends React.Component {
         setup: {},
       },
       date: '',
-      history: [],
+      memories: [],
       errors: [],
     };
 
@@ -118,102 +119,6 @@ class Conversor extends React.Component {
     return this;
   }
 
-  history = {
-    save(spec) {
-      const { history } = this.state;
-
-      let desc = ''
-        + 'The amount of'
-        + ' ' + spec.from.currency
-        + ' ' + (spec.from.amount)
-        + ' (rate: ' + spec.from.rate + ')'
-        + ' was converted to'
-        + ' ' + (spec.to.amount)
-        + ' ' + spec.to.currency
-        + ' (rate: ' + spec.to.rate + ')';
-
-      console.info(desc);
-
-      return this.setState({
-        history: history.concat([{ desc, spec }]),
-      });
-    },
-
-    getLastChangesAnalysis(spec = null) {
-      const { history } = this.state;
-      const { length } = history;
-      let penultimate, last;
-
-      if (spec) {
-        penultimate = history[length - 1].spec;
-        last = spec;
-      } else {
-        penultimate = history[length - 2].spec;
-        last = history[length - 1].spec;
-      }
-
-      const isFromCurrEqual = (penultimate.from.currency === last.from.currency);
-      const isFromAmountEqual = (penultimate.from.amount === last.from.amount);
-      const isToCurrEqual = (penultimate.to.currency === last.to.currency);
-      const isToAmountEqual = (penultimate.to.amount === last.to.amount);
-
-      return {
-        was_equal: {
-          from: {
-            currency: isFromCurrEqual,
-            amount: isFromAmountEqual,
-          },
-          to: {
-            currency: isToCurrEqual,
-            amount: isToAmountEqual,
-          },
-        },
-      };
-    },
-
-    getUpdatedAndOutdatedModes(specs) {
-      let outdatedMode, updatedMode;
-      const temporaryHistory = Object.assign({}, specs);
-
-      const wasEqual = this
-        .history
-        .getLastChangesAnalysis
-        .call(this, temporaryHistory)
-        .was_equal;
-
-      if (!wasEqual.to.currency) {
-
-        /*
-          The user has updated
-          the 'to' dropdown select
-        */
-
-        outdatedMode = 'to';
-        updatedMode = 'from';
-      } else if (wasEqual.from.currency && wasEqual.from.amount) {
-
-        /*
-          The user has updated
-          the 'to' input
-        */
-
-        outdatedMode = 'from';
-        updatedMode = 'to';
-      } else if (wasEqual.to.currency && wasEqual.to.amount) {
-
-        /*
-          The user has updated
-          the 'from' input
-        */
-
-        outdatedMode = 'to';
-        updatedMode = 'from';
-      }
-
-      return { outdatedMode, updatedMode };
-    }
-  }
-
   getConvertedSpec(spec) {
     const { currency, rate } = spec;
     const { mode } = spec.setup;
@@ -262,7 +167,7 @@ class Conversor extends React.Component {
     let {
       outdatedMode,
       updatedMode
-    } = this.history.getUpdatedAndOutdatedModes.call(this, specs);
+    } = memory.getUpdatedAndOutdatedModes.call(this, specs);
 
     let outdatedSpec = specs[outdatedMode];
     let updatedSpec = specs[updatedMode];
@@ -291,7 +196,7 @@ class Conversor extends React.Component {
       }
     }
 
-    this.history.save.call(this, log);
+    memory.save.call(this, log);
   }
 
   convertTheFromField(outdated, updated) {
@@ -300,11 +205,10 @@ class Conversor extends React.Component {
       This method should
       only be used after:
 
-        - the 'from' select has changed (x)
-        - or the 'to' input has changed
+        - the 'from' select has been changed (x)
+        - or the 'to' input has been changed
 
    */
-
 
     return updated.amount / updated.rate;
   }
@@ -315,8 +219,8 @@ class Conversor extends React.Component {
       This method should
       only be used after:
 
-        - the 'from' input has changed
-        - or the 'to' select has changed
+        - the 'from' input has been changed
+        - or the 'to' select has been changed
 
    */
 
