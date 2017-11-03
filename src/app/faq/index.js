@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../styles/stationery.css';
 import StationeryWIP from '../stationery-wip';
 
 const FAQ = function () {

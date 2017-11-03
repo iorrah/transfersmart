@@ -1,6 +1,5 @@
 import React from 'react';
 import './styles.css';
-import '../../styles/stationery.css';
 
 const AboutUs = function () {
   return (
