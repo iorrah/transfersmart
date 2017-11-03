@@ -1,0 +1,25 @@
+$gm-xs: 0;
+$gm-sm: 576px;
+$gm-md: 768px;
+$gm-lg: 992px;
+$gm-xl: 1200px;
+
+$gm-xs-sm: '(min-width: #{$gm-xs}) and (max-width: #{$gm-sm})';
+$gm-xs-md: '(min-width: #{$gm-xs}) and (max-width: #{$gm-md})';
+$gm-xs-lg: '(min-width: #{$gm-xs}) and (max-width: #{$gm-lg})';
+$gm-xs-xl: '(min-width: #{$gm-xs}) and (min-width: #{$gm-xl})';
+$gm-xs-up: '(min-width: #{$gm-xs})';
+
+$gm-sm-md: '(min-width: #{$gm-sm}) and (max-width: #{$gm-md})';
+$gm-sm-lg: '(min-width: #{$gm-sm}) and (max-width: #{$gm-lg})';
+$gm-sm-xl: '(min-width: #{$gm-sm}) and (max-width: #{$gm-xl})';
+$gm-sm-up: '(min-width: #{$gm-sm})';
+
+$gm-md-lg: '(min-width: #{$gm-md}) and (max-width: #{$gm-lg})';
+$gm-md-lg: '(min-width: #{$gm-md}) and (max-width: #{$gm-xl})';
+$gm-md-up: '(min-width: #{$gm-md})';
+
+$gm-lg-xl: '(min-width: #{$gm-lg}) and (max-width: #{$gm-xl})';
+$gm-lg-up: '(min-width: #{$gm-lg})';
+
+$gm-xl-up: '(min-width: #{$gm-xl})';
