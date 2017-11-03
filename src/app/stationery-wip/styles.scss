@@ -1,3 +1,5 @@
+@import '../../styles/grid-measures.scss';
+
 .stationery-wip {
   padding: 2rem 0;
 
@@ -16,7 +18,7 @@
   }
 }
 
-@media (min-width: 0) and (max-width: 414px) {
+@media #{$gm-xs-tn} {
   .stationery-wip {
     padding: 3.5rem 0;
 
@@ -25,7 +27,7 @@
   }
 }
 
-@media (min-width: 0) and (max-width: 968px) {
+@media #{$gm-xs-lg} {
   .stationery-wip {
     padding: 4rem 0;
 

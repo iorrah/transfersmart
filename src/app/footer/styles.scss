@@ -1,3 +1,5 @@
+@import '../../styles/grid-measures.scss';
+
 footer {
   padding: 0;
   width: 100%;
@@ -115,7 +117,22 @@ footer {
   }
 }
 
-@media (min-width: 0) and (max-width: 968px) {
+@media #{$gm-xs-sm} {
+  footer {
+    .links { padding: 1.5rem 0; }
+
+    ul {
+      display: block;
+      width: 100%;
+      margin: 0 0 1.3rem;
+
+      &:last-child { margin: 0; }
+      &.social li span { margin: 0 0.2rem; }
+    }
+  }
+}
+
+@media #{$gm-sm-lg} {
   footer {
     ul.pages li span { margin: 0 .3rem; }
   }

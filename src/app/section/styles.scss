@@ -1,3 +1,5 @@
+@import '../../styles/grid-measures.scss';
+
 section {
   background-color: #3b1879;
   padding: 6rem 0 9rem;
@@ -70,9 +72,9 @@ section {
   }
 }
 
-@media (min-width: 0) and (max-width: 414px) {
+@media #{$gm-xs-tn} {
   section {
-    padding: 3rem 0;
+    padding: 4.3rem 0 3rem;
 
     .col-ad {
       margin: 0 0 1rem;
@@ -82,7 +84,7 @@ section {
       h1 {
         margin: 0;
         text-align: center;
-        font-size: 2.5rem;
+        font-size: 1.7rem;
       }
 
       .quotation {
@@ -96,15 +98,7 @@ section {
   }
 }
 
-@media (min-width: 415px) and (max-width: 968px) {
-  section {
-    padding: 6rem 0 18rem;
-
-    .row .col .ad h1 { font-size: 2rem; }
-  }
-}
-
-@media (min-width: 0) and (max-width: 968px) {
+@media #{$gm-xs-lg} {
   section {
     height: auto;
 
@@ -138,3 +132,18 @@ section {
   }
 }
 
+@media #{$gm-tn-lg} {
+  section {
+    padding: 6rem 0 18rem;
+
+    .row .col .ad h1 { font-size: 2rem; }
+  }
+}
+
+@media #{$gm-lg-xl} {
+  section {
+    .ad {
+      h1 { font-size: 3.8rem; }
+    }
+  }
+}
