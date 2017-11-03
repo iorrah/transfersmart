@@ -4,7 +4,7 @@ import './styles.css';
 const AboutUs = function () {
   return (
     <div className="about-us stationery">
-      <div className="wall"></div>
+      <div className="wall" />
 
       <div className="wrapper papper">
         <h1>About Us</h1>
