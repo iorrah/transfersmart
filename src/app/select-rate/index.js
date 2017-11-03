@@ -41,8 +41,16 @@ const SelectRateOption = createClass({
         onMouseMove={this.handleMouseMove}
         title={this.props.option.title}
       >
-        <span className="Select-currency-name">{this.props.children}</span>
-        <span className={`Select-flag flag-icon flag-icon-${this.props.option.iso}`} />
+        <span className="Select-currency-name">
+          {this.props.children}
+        </span>
+
+        <span
+          className={'Select-flag'
+            + ' flag-icon'
+            + ' flag-icon-'
+            + this.props.option.iso }
+        />
       </div>
     );
   },
@@ -59,8 +67,16 @@ const SelectRateValue = createClass({
     return (
       <div className="Select-value" title={this.props.value.title}>
         <span className="Select-value-label">
-          <span className="Select-currency-name">{this.props.children}</span>
-          <span className={`Select-flag flag-icon flag-icon-${this.props.value.iso}`} />
+          <span className="Select-currency-name">
+            {this.props.children}
+          </span>
+
+          <span
+            className={'Select-flag'
+              + ' flag-icon'
+              + ' flag-icon-'
+              + this.props.value.iso }
+          />
         </span>
       </div>
     );
@@ -86,12 +102,13 @@ const SelectRate = createClass({
       name,
       onChange,
       onFocusSelectRate,
-      onBlurSelectRate } = this.props;
+      onBlurSelectRate, } = this.props;
 
     const arrowRenderer = () => {
       if (disabled) {
         return <FaLock className="Select-locker" />;
       }
+
       return <span className="Select-arrow" />;
     };
 
