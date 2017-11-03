@@ -3,7 +3,7 @@
 </p><br />
 
 <p align="center">
-  [![Maintainability](https://api.codeclimate.com/v1/badges/0a947ed888e2932d48f6/maintainability)](https://codeclimate.com/github/iorrah/transfersmart/maintainability)
+  <a href="https://codeclimate.com/github/iorrah/transfersmart/maintainability"><img src="https://api.codeclimate.com/v1/badges/0a947ed888e2932d48f6/maintainability" /></a> <a href="https://travis-ci.org/iorrah/transfersmart"><img src="https://travis-ci.org/iorrah/transfersmart.svg?branch=master" /></a>
 </p><br />
 
 <p align="center">
