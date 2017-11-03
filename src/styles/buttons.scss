@@ -20,12 +20,12 @@
   }
 
   &.btn-white {
-    background-color: #f9f9f9;
-    border-color: #eee;
+    background-color: #fff;
+    border-color: #fff;
     color: #111;
 
     &:hover {
-      background-color: #eee;
+      background-color: #f9f9f9;
       color: #111;
     }
   }
@@ -35,10 +35,10 @@
   }
 
   &.btn-rz-1 {
-    width: 4.4rem;
-    height: 4.4rem;
-    padding: .55rem .2rem .4rem 0;
+    width: 3.6rem;
+    height: 3.6rem;
+    padding: .5rem .15rem .4rem 0;
     font-weight: 100;
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 }

@@ -1,25 +1,18 @@
 .stationery-wip {
   padding: 2rem 0;
 
-  .cog {
-    font-size: 5rem;
-  }
+  .cog { font-size: 4rem; }
 
-  h2,
-  h3 {
+  h1,
+  h2 {
     text-align: center;
   }
 
-  h2 {
-    font-size: 2rem;
-    margin: 0 0 1rem;
-    font-weight: 600;
-  }
+  h1 { margin: 0 0 1rem; }
 
-  h3 {
-    font-size: 1.5rem;
-    font-weight: 400;
+  h2 {
     margin: 0 0 2rem;
+    font-weight: 400;
   }
 }
 
@@ -27,12 +20,21 @@
   .stationery-wip {
     padding: 3.5rem 0;
 
-    h2 {
-      font-size: 1.7rem;
-    }
+    h1 { font-size: 1.4rem; }
+    h2 { font-size: 1.2rem; }
+  }
+}
 
-    h3 {
-      font-size: 1.2rem;
+@media (min-width: 0) and (max-width: 968px) {
+  .stationery-wip {
+    padding: 4rem 0;
+
+    h1 {
+      background-color: transparent;
+      color: inherit;
+      padding: 0;
+      font-weight: 600;
+      white-space: normal;
     }
   }
 }
