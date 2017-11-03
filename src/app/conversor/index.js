@@ -1,8 +1,8 @@
 import React from 'react';
-import AmountEntry from './AmountEntry';
-import RateDetails from './RateDetails';
-import capitalize from '../utils/formatter/string/capitalize';
-import { fetchDataIfNeeded } from './FetchData';
+import AmountEntry from '../amount-entry';
+import RateDetails from '../rate-details';
+import capitalize from '../../utils/formatter/string/capitalize';
+import { fetchDataIfNeeded } from '../fetch-data';
 
 class Conversor extends React.Component {
   constructor(props) {

@@ -1,5 +1,5 @@
-import Mock from '../utils/Mock';
-import API from './API';
+import Mock from '../../utils/mock';
+import API from '../api';
 
 const fetchData = function () {
   return fetch(API.url());

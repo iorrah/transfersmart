@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Cleave from 'cleave.js/react';
 import 'react-select/dist/react-select.css';
-import SelectRate from './SelectRate';
-import './AmountEntry.css';
+import SelectRate from '../select-rate';
+import './styles.css';
 
 class AmountEntry extends React.Component {
   constructor(props) {

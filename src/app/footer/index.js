@@ -6,7 +6,7 @@ import {
   FaBalanceScale,
   FaCodeFork, } from 'react-icons/lib/fa';
 
-import './Footer.css';
+import './styles.css';
 
 const Footer = function () {
   return (

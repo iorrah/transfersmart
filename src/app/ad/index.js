@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Ad = function Ad() {
+const Ad = function () {
   return (
     <div>
       <h1>

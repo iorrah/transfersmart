@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css';
+import './styles.css';
 
 const Header = function () {
   return (
@@ -11,13 +11,13 @@ const Header = function () {
         </Link>
 
         <ul>
-          <li><Link to="/AboutUs">About us</Link></li>
-          <li><Link to="/FAQ">FAQ</Link></li>
-          <li><Link to="/Rates">Rates</Link></li>
-          <li><Link to="/LogIn">Log In</Link></li>
+          <li><Link to="/about-us">About us</Link></li>
+          <li><Link to="/faq">FAQ</Link></li>
+          <li><Link to="/rates">Rates</Link></li>
+          <li><Link to="/log-in">Log In</Link></li>
 
           <li className="highlight">
-            <Link to="/SignUp">Sign Up</Link>
+            <Link to="/sign-up">Sign Up</Link>
           </li>
         </ul>
       </div>

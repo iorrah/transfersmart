@@ -1,7 +1,7 @@
 import React from 'react';
-import Ad from './Ad';
-import Conversor from './Conversor';
-import './Section.css';
+import Ad from '../ad';
+import Conversor from '../conversor';
+import './styles.css';
 
 const Section = function Section() {
   return (

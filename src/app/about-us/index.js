@@ -1,6 +1,6 @@
 import React from 'react';
-import './AboutUs.css';
-import '../styles/stationery.css';
+import './styles.css';
+import '../../styles/stationery.css';
 
 const AboutUs = function () {
   return (
