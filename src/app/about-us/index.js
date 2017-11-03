@@ -1,9 +1,8 @@
 import React from 'react';
-import './styles.css';
 
 const AboutUs = function () {
   return (
-    <div className="about-us stationery">
+    <div className="stationery">
       <div className="wall" />
 
       <div className="wrapper papper">
