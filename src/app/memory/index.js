@@ -32,20 +32,15 @@ const memory = {
       last = memories[length - 1].spec;
     }
 
-    const isFromCurrEqual = (penultimate.from.currency === last.from.currency);
-    const isFromAmountEqual = (penultimate.from.amount === last.from.amount);
-    const isToCurrEqual = (penultimate.to.currency === last.to.currency);
-    const isToAmountEqual = (penultimate.to.amount === last.to.amount);
-
     return {
       was_equal: {
         from: {
-          currency: isFromCurrEqual,
-          amount: isFromAmountEqual,
+          currency: (penultimate.from.currency === last.from.currency),
+          amount: (penultimate.from.amount === last.from.amount),
         },
         to: {
-          currency: isToCurrEqual,
-          amount: isToAmountEqual,
+          currency: (penultimate.to.currency === last.to.currency),
+          amount: (penultimate.to.amount === last.to.amount),
         },
       },
     };
