@@ -142,8 +142,12 @@ section {
 
 @media #{$gm-lg-xl} {
   section {
-    .ad {
-      h1 { font-size: 3.8rem; }
+    .col-ad {
+      .ad {
+        padding: 3rem 3rem 0 0;
+
+        h1 { font-size: 3.8rem; }
+      }
     }
   }
 }
