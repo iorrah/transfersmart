@@ -1,0 +1,45 @@
+$gm-xs: 0;
+$gm-tn: 414px;
+$gm-sm: 576px;
+$gm-md: 768px;
+$gm-lg: 992px;
+$gm-xl: 1200px;
+
+$gm-pre-tn: ($gm-tn - 1px);
+$gm-pre-sm: ($gm-sm - 1px);
+$gm-pre-md: ($gm-md - 1px);
+$gm-pre-lg: ($gm-lg - 1px);
+$gm-pre-xl: ($gm-xl - 1px);
+
+$gm-xs-pre-tn: '(min-width: #{$gm-xs}) and (max-width: #{$gm-pre-tn})';
+$gm-xs-pre-sm: '(min-width: #{$gm-xs}) and (max-width: #{$gm-pre-sm})';
+$gm-xs-pre-md: '(min-width: #{$gm-xs}) and (max-width: #{$gm-pre-md})';
+$gm-xs-pre-lg: '(min-width: #{$gm-xs}) and (max-width: #{$gm-pre-lg})';
+$gm-xs-pre-xl: '(min-width: #{$gm-xs}) and (min-width: #{$gm-pre-xl})';
+
+$gm-xs-tn: '(min-width: #{$gm-xs}) and (max-width: #{$gm-tn})';
+$gm-xs-sm: '(min-width: #{$gm-xs}) and (max-width: #{$gm-sm})';
+$gm-xs-md: '(min-width: #{$gm-xs}) and (max-width: #{$gm-md})';
+$gm-xs-lg: '(min-width: #{$gm-xs}) and (max-width: #{$gm-lg})';
+$gm-xs-xl: '(min-width: #{$gm-xs}) and (min-width: #{$gm-xl})';
+$gm-xs-up: '(min-width: #{$gm-xs})';
+
+$gm-tn-sm: '(min-width: #{$gm-tn}) and (max-width: #{$gm-sm})';
+$gm-tn-md: '(min-width: #{$gm-tn}) and (max-width: #{$gm-md})';
+$gm-tn-lg: '(min-width: #{$gm-tn}) and (max-width: #{$gm-lg})';
+$gm-tn-xl: '(min-width: #{$gm-tn}) and (min-width: #{$gm-xl})';
+$gm-tn-up: '(min-width: #{$gm-tn})';
+
+$gm-sm-md: '(min-width: #{$gm-sm}) and (max-width: #{$gm-md})';
+$gm-sm-lg: '(min-width: #{$gm-sm}) and (max-width: #{$gm-lg})';
+$gm-sm-xl: '(min-width: #{$gm-sm}) and (max-width: #{$gm-xl})';
+$gm-sm-up: '(min-width: #{$gm-sm})';
+
+$gm-md-lg: '(min-width: #{$gm-md}) and (max-width: #{$gm-lg})';
+$gm-md-lg: '(min-width: #{$gm-md}) and (max-width: #{$gm-xl})';
+$gm-md-up: '(min-width: #{$gm-md})';
+
+$gm-lg-xl: '(min-width: #{$gm-lg}) and (max-width: #{$gm-xl})';
+$gm-lg-up: '(min-width: #{$gm-lg})';
+
+$gm-xl-up: '(min-width: #{$gm-xl})';

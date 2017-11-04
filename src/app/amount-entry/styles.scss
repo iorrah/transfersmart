@@ -1,78 +1,81 @@
+@import '../../styles/grid-measures.scss';
+
 .amount-entry {
-  width: 100%;
-  padding: 0;
-  position: relative;
-  overflow: visible;
-  display: inline-block;
-  margin: 0 0 1.8rem;
-  color: inherit;
   border: 0;
   border-radius: .12rem;
-  border-radius: .12rem;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),
-              0 2px 10px 0 rgba(0,0,0,.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16),
+              0 2px 10px 0 rgba(0, 0, 0, .12);
+
+  color: inherit;
+  display: inline-block;
+  margin: 0 0 1.8rem;
+  overflow: visible;
+  padding: 0;
+  position: relative;
+  width: 100%;
 
   -webkit-transition: -webkit-box-shadow .55s;
-  transition: -webkit-box-shadow .55s;
-  transition: box-shadow .55s;
-  transition: box-shadow .55s,-webkit-box-shadow .55s;
+          transition: -webkit-box-shadow .55s;
+          transition: box-shadow .55s;
+          transition: box-shadow .55s,
+                      -webkit-box-shadow .55s;
 
 
   &.is-focused {
-    box-shadow: 0 12px 15px 0 rgba(0,0,0,.24),
-                0 17px 50px 0 rgba(0,0,0,.19);
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24),
+                0 17px 50px 0 rgba(0, 0, 0, .19);
 
     input[type="text"] {
       background-color: #fff;
     }
 
     .Select .Select-control {
-      background: linear-gradient(40deg,#5c1cd0, #2e017d);
+      background: linear-gradient(40deg, #5c1cd0, #2e017d);
       background: linear-gradient(to bottom, #5c1cd0, #2e017d);
     }
   }
 
   label {
     color: inherit;
-    font-weight: 400;
+    cursor: text;
     font-size: .7rem;
+    font-weight: 400;
+    left: .8rem;
     margin: 0 0 .5rem;
     position: absolute;
     top: .7rem;
-    left: .8rem;
-    cursor: text;
   }
 
   input[type="text"] {
+    border-bottom-right-radius: 0;
     border-radius: .12rem;
     border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
     background-color: #d0d0d0;
     border: 0;
-    outline: 0;
-    padding: 1.9rem .8rem 1rem;
+    display: block;
+    float: left;
     font-size: 1.4rem;
     font-weight: 400;
-    display: block;
+    outline: 0;
+    padding: 1.9rem .8rem 1rem;
     width: 55%;
-    float: left;
 
     -webkit-transition: -webkit-background-color .55s;
-    transition: -webkit-background-color .55s;
-    transition: background-color .55s;
-    transition: background-color .55s,-webkit-background-color .55s;
-
+            transition: -webkit-background-color .55s;
+            transition: background-color .55s;
+            transition: background-color .55s,
+                        -webkit-background-color .55s;
   }
 
   .Select {
     background-color: transparent;
-    color: #fff;
-    position: relative;
-    display: block;
-    width: 45%;
     border: 0;
-    padding: 0;
+    color: #fff;
+    display: block;
     float: left;
+    padding: 0;
+    position: relative;
+    width: 45%;
 
     &.Select--single.has-value.is-searchable {
       .Select-control .Select-value {
@@ -81,15 +84,15 @@
     }
 
     .Select-control {
-      background: linear-gradient(40deg,#521cb3, #2f1361);
+      background: linear-gradient(40deg, #521cb3, #2f1361);
       background: linear-gradient(to bottom, #521cb3, #2f1361);
+      border: 0;
+      border-bottom-left-radius: 0;
       border-radius: .12rem;
       border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-      border: 0;
-      outline: 0;
       color: #fff;
       height: 4.48rem;
+      outline: 0;
 
       &,
       &:hover,
@@ -99,20 +102,20 @@
         .Select-input {
           background-color: transparent;
           border: 0;
-          font-size: 1.2rem;
-          font-weight: 600;
-          padding-top: 1.3rem;
-          padding-bottom: 1.1rem;
-          padding-left: 1.2rem;
           color: #fff;
           height: auto;
+          font-size: 1.2rem;
+          font-weight: 600;
+          padding-bottom: 1.1rem;
+          padding-left: 1.2rem;
+          padding-top: 1.3rem;
 
           input {
+            border: 0;
             color: inherit;
             font-size: inherit;
-            padding: 0;
             font-weight: inherit;
-            border: 0;
+            padding: 0;
             text-transform: uppercase;
           }
         }
@@ -120,11 +123,11 @@
         .Select-value {
           background-color: transparent;
           border: 0;
+          color: #fff;
           font-size: 1.2rem;
           font-weight: 600;
-          padding-top: 1.1rem;
           padding-left: 1.2rem;
-          color: #fff;
+          padding-top: 1.1rem;
 
           &,
           &:hover,
@@ -145,9 +148,8 @@
       padding: 0 1rem 0 0;
 
       .Select-arrow {
-        border-width: 6px 6px 3px;
         border-top-color: #fff;
-
+        border-width: 6px 6px 3px;
       }
 
       svg { font-size: 1.1rem; }
@@ -155,8 +157,8 @@
 
     &.is-open {
       .Select-arrow-zone .Select-arrow {
-        border-top-color: #fff;
         border-bottom-color: #fff;
+        border-top-color: #fff;
         border-width: 0 6px 6px;
         top: -3px;
       }
@@ -169,7 +171,7 @@
     }
 
     .Select-placeholder {
-      color: rgba(255, 255, 255, 0.51);
+      color: rgba(255, 255, 255, .51);
       font-weight: 700;
       padding: 1.2rem 1rem;
     }
@@ -186,14 +188,14 @@
         background-color: transparent;
 
         .Select-option {
+          background-color: transparent;
           color: #fff;
           font-size: 1rem;
           font-weight: 600;
-          background-color: transparent;
 
           &.is-selected,
           &.is-focused {
-            background-color: rgba(0, 0, 0, 0.16);
+            background-color: rgba(0, 0, 0, .16);
             color: #fff;
           }
         }
@@ -202,8 +204,6 @@
   }
 }
 
-@media (min-width: 0) and (max-width: 968px) {
-  .amount-entry {
-    margin: 0 0 2rem;
-  }
+@media #{$gm-xs-lg} {
+  .amount-entry { margin: 0 0 2rem; }
 }

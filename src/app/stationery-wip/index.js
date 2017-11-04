@@ -10,13 +10,13 @@ const StationeryWIP = function () {
         <FaCog className="cog spin" />
       </div>
 
-      <h2>
+      <h1>
         This section is under construction
-      </h2>
+      </h1>
 
-      <h3>
+      <h2>
         Please, come back again later
-      </h3>
+      </h2>
 
       <div className="text-center">
         <Link to="/"

@@ -11,8 +11,13 @@ engines:
         enabled: false
   eslint:
     enabled: true
-    config:
-      config: .eslintrc.json
+    checks:
+      react/jsx-filename-extension:
+        enabled: false
+      func-names:
+        enabled: false
+      react/no-unescaped-entities:
+        enabled: false
 ratings:
   paths:
   - src/**/*.html
