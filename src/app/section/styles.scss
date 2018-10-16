@@ -27,37 +27,11 @@ section {
     h1 {
       font-weight: 900;
       font-size: 4rem;
-      margin: 0 0 5rem;
-    }
-
-    p {
-      font-weight: 100;
-      font-size: 1.1rem;
-      margin: 0 0 1.2rem;
-
-      &.quote {
-        padding: 0;
-        color: rgba(255, 255, 255, .1);
-        font-weight: 900;
-        margin: 0 0 1rem;
-        font-size: 10rem;
-        line-height: 2rem;
-        position: relative;
-        top: .7rem;
-        font-family: Roboto;
-      }
-
-      &.author {
-        margin: 0;
-        font-size: .9rem;
-        text-align: right;
-        color: rgba(255, 255, 255, .4);
-      }
     }
 
     .ad {
       width: 100%;
-      padding: 3rem 6.97rem 0 0;
+      padding: 6rem 6.97rem 0 0;
     }
   }
 
@@ -81,6 +55,8 @@ section {
     }
 
     .ad {
+      padding: 0;
+
       h1 {
         margin: 0;
         text-align: center;
@@ -111,15 +87,11 @@ section {
         .ad {
           padding-left: 0;
           padding-right: 0;
+          padding-top: 2rem;
 
-          p {
-            &.quote {
-              font-size: 6rem;
-              line-height: .7rem;
-              top: -.1rem;
-            }
-
-            &.phrase { font-size: 1.2rem; }
+          h1 {
+            margin: 0;
+            text-align: center;
           }
         }
 
@@ -134,7 +106,7 @@ section {
 
 @media #{$gm-tn-lg} {
   section {
-    padding: 6rem 0 18rem;
+    padding: 9rem 0 6rem;
 
     .row .col .ad h1 { font-size: 2rem; }
   }
@@ -144,9 +116,12 @@ section {
   section {
     .col-ad {
       .ad {
-        padding: 3rem 3rem 0 0;
+        padding: 9rem 3rem 0 0;
 
-        h1 { font-size: 3.8rem; }
+        h1 {
+          font-size: 3.8rem;
+          margin: 0;
+        }
       }
     }
   }

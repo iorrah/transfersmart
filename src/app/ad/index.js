@@ -8,22 +8,6 @@ const Ad = function () {
         to usable currency
         conversion
       </h1>
-
-      <div className="quotation">
-        <p className="quote">&ldquo;</p>
-
-        <p className="phrase">
-          You‘ve got to start
-          with the customer
-          experience and work
-          backwards to the
-          technology<span className="roboto">&rdquo;</span>
-        </p>
-
-        <p className="author">
-          &ndash; Steve Jobs
-        </p>
-      </div>
     </div>
   );
 };
