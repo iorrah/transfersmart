@@ -6,7 +6,7 @@ const AboutUs = function () {
       <div className="wall" />
 
       <div className="wrapper papper">
-        <h1>About Us</h1>
+        <h1>About us</h1>
 
         <p>
           TransferSmart is a simple, free and <a href="https://github.com/iorrah/transfersmart" title="Access this project's official resitory on GitHub" target="_blank" rel="noopener noreferrer">open source</a> web application that enables <a href="https://www.google.com/search?q=currency+conversion" title="Similar feature provided by Google" target="_blank" rel="noopener noreferrer">currency conversion</a> simulations from <a href="https://en.wikipedia.org/wiki/Euro" title="Euro" target="_blank" rel="noopener noreferrer">EUR</a> to multiple other currencies, such as <a href="https://en.wikipedia.org/wiki/Australian_dollar" title="Australian Dollar" target="_blank" rel="noopener noreferrer">AUD</a>, <a href="https://en.wikipedia.org/wiki/Brazilian_real" title="Brazilian Real" target="_blank" rel="noopener noreferrer">BRL</a>, <a href="https://en.wikipedia.org/wiki/Canadian_dollar" title="Canadian Dollar" target="_blank" rel="noopener noreferrer">CAD</a>, <a href="https://en.wikipedia.org/wiki/Pound_sterling" title="Pound Sterling" target="_blank" rel="noopener noreferrer">GBP</a>, <a href="https://en.wikipedia.org/wiki/United_States_dollar" title="United States Dollar" target="_blank" rel="noopener noreferrer">USD</a>, etc.
