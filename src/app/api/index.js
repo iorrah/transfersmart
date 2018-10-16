@@ -1,7 +1,8 @@
 const API = {
-  URL: process.env.REACT_APP_API_URL,
-  URI: process.env.REACT_APP_API_URI,
-  QUERY: process.env.REACT_APP_API_QUERY,
+  URL: 'http://data.fixer.io',
+  URI: 'api/latest',
+  QUERY: `access_key=${process.env.REACT_APP_API_KEY}`,
+
   url() {
     return `${this.URL}/${this.URI}?${this.QUERY}`;
   },
