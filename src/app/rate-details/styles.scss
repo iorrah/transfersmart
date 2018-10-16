@@ -1,0 +1,24 @@
+@import '../../styles/grid-measures.scss';
+
+.rate-details {
+  margin: 0 0 1.8rem 0;
+
+  p {
+    margin: 0 0 .4rem;
+    color: #726eab;
+    font-size: .8rem;
+
+    &:last-child { margin: 0; }
+
+    svg {
+      font-size: 1.2rem;
+      position: relative;
+      top: -.2rem;
+      margin: 0 .4rem 0 0;
+    }
+  }
+}
+
+@media #{$gm-xs-lg} {
+  .rate-details { margin: 0 0 2rem; }
+}

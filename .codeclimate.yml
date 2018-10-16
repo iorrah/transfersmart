@@ -1,0 +1,27 @@
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+  scss-lint:
+    enabled: true
+    checks:
+      VendorPrefix:
+        enabled: false
+  eslint:
+    enabled: true
+    checks:
+      react/jsx-filename-extension:
+        enabled: false
+      func-names:
+        enabled: false
+      react/no-unescaped-entities:
+        enabled: false
+ratings:
+  paths:
+  - src/**/*.html
+  - src/**/*.js
+  - src/**/*.scss
+exclude_paths:
+- src/registerServiceWorker.js

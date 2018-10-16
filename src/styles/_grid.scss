@@ -1,0 +1,22 @@
+.wrapper {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+@media #{$gm-xs-tn} {
+  .wrapper {
+    width: calc(100% - 2rem);
+  }
+}
+
+@media #{$gm-tn-lg} {
+  .wrapper {
+    width: calc(100% - 7rem);
+  }
+}
+
+@media #{$gm-lg-xl} {
+  .wrapper {
+    width: calc(100% - 9rem);
+  }
+}

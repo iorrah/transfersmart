@@ -1,0 +1,128 @@
+@import '../../styles/grid-measures.scss';
+
+section {
+  background-color: #3b1879;
+  padding: 6rem 0 9rem;
+
+  .row {
+    overflow: visible;
+
+    .col {
+      display: block;
+      float: left;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+  }
+
+  .col-ad {
+    width: 60%;
+
+    h1,
+    p {
+      color: rgba(255, 255, 255, .85);
+    }
+
+    h1 {
+      font-weight: 900;
+      font-size: 4rem;
+    }
+
+    .ad {
+      width: 100%;
+      padding: 6rem 6.97rem 0 0;
+    }
+  }
+
+  .col-feature {
+    width: 40%;
+
+    .feature {
+      padding: 8rem 0 5rem 2rem;
+      width: 100%;
+      float: right;
+    }
+  }
+}
+
+@media #{$gm-xs-tn} {
+  section {
+    padding: 4.3rem 0 3rem;
+
+    .col-ad {
+      margin: 0 0 1rem;
+    }
+
+    .ad {
+      padding: 0;
+
+      h1 {
+        margin: 0;
+        text-align: center;
+        font-size: 1.7rem;
+      }
+
+      .quotation {
+        display: none;
+      }
+    }
+
+    .col.col-feature .feature {
+      padding: 0 0 5rem;
+    }
+  }
+}
+
+@media #{$gm-xs-lg} {
+  section {
+    height: auto;
+
+    .row {
+      .col {
+        width: 100%;
+
+        &.col-ad { margin: 0 0 3.5rem; }
+
+        .ad {
+          padding-left: 0;
+          padding-right: 0;
+          padding-top: 2rem;
+
+          h1 {
+            margin: 0;
+            text-align: center;
+          }
+        }
+
+        .feature {
+          padding: 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media #{$gm-tn-lg} {
+  section {
+    padding: 9rem 0 6rem;
+
+    .row .col .ad h1 { font-size: 2rem; }
+  }
+}
+
+@media #{$gm-lg-xl} {
+  section {
+    .col-ad {
+      .ad {
+        padding: 9rem 3rem 0 0;
+
+        h1 {
+          font-size: 3.8rem;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
