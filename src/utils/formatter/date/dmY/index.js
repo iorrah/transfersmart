@@ -1,11 +1,11 @@
 import string from '../../string';
 
-const dmY = function (date) {
+const dmY = (date) => {
   const object = new Date(date);
 
-  const day = object.getDate(),
-    month = (object.getMonth() + 1),
-    year = object.getFullYear();
+  const day = object.getDate();
+  const month = (object.getMonth() + 1);
+  const year = object.getFullYear();
 
   return `${string.pad(day)}/${string.pad(month)}/${year}`;
 };

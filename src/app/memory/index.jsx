@@ -2,15 +2,15 @@ const memory = {
   save(spec) {
     const { memories } = this.state;
 
-    let desc = ''
+    const desc = `${''
       + 'The amount of'
-      + ' ' + spec.from.amount
-      + ' ' + spec.from.currency
-      + ' (rate: ' + spec.from.rate + ')'
+      + ' '}${spec.from.amount
+    } ${spec.from.currency
+    } (rate: ${spec.from.rate})`
       + ' was converted to'
-      + ' ' + spec.to.amount
-      + ' ' + spec.to.currency
-      + ' (rate: ' + spec.to.rate + ')';
+      + ` ${spec.to.amount
+      } ${spec.to.currency
+      } (rate: ${spec.to.rate})`;
 
     console.info(desc);
 
@@ -22,7 +22,8 @@ const memory = {
   getLastChangesAnalysis(spec = null) {
     const { memories } = this.state;
     const { length } = memories;
-    let penultimate, last;
+    let penultimate,
+      last;
 
     if (spec) {
       penultimate = memories[length - 1].spec;
@@ -47,7 +48,8 @@ const memory = {
   },
 
   getUpdatedAndOutdatedModes(specs) {
-    let outdatedMode, updatedMode;
+    let outdatedMode,
+      updatedMode;
     const temporaryMemory = Object.assign({}, specs);
 
     const wasEqual = memory
@@ -56,7 +58,6 @@ const memory = {
       .was_equal;
 
     if (!wasEqual.to.currency) {
-
       /*
         The user has updated
         the 'to' dropdown select
@@ -65,7 +66,6 @@ const memory = {
       outdatedMode = 'to';
       updatedMode = 'from';
     } else if (wasEqual.from.currency && wasEqual.from.amount) {
-
       /*
         The user has updated
         the 'to' input
@@ -74,7 +74,6 @@ const memory = {
       outdatedMode = 'from';
       updatedMode = 'to';
     } else if (wasEqual.to.currency && wasEqual.to.amount) {
-
       /*
         The user has updated
         the 'from' input
@@ -85,7 +84,7 @@ const memory = {
     }
 
     return { outdatedMode, updatedMode };
-  }
+  },
 };
 
 export default memory;

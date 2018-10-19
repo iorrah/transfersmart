@@ -99,6 +99,6 @@ class AmountEntry extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default AmountEntry;

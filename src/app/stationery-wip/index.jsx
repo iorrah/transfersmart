@@ -19,9 +19,11 @@ const StationeryWIP = function () {
       </h2>
 
       <div className="text-center">
-        <Link to="/"
+        <Link
+          to="/"
           className="btn btn-white btn-circular btn-rz-1 z-depth-1"
-          title="Go back">
+          title="Go back"
+        >
           <FaAngleLeft />
         </Link>
       </div>

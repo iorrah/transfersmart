@@ -36,7 +36,7 @@ class Conversor extends React.Component {
   }
 
   getUSDRate(rates) {
-    const rate = rates.find((e) => e.currency === 'USD');
+    const rate = rates.find(e => e.currency === 'USD');
 
     if (rate && rate.iso && rate.rate) {
       return rate;
@@ -46,7 +46,7 @@ class Conversor extends React.Component {
   }
 
   getEURRate(rates) {
-    const rate = rates.find((e) => e.currency === 'EUR');
+    const rate = rates.find(e => e.currency === 'EUR');
 
     if (rate && rate.iso && rate.rate) {
       return rate;
@@ -57,67 +57,64 @@ class Conversor extends React.Component {
 
   setInitialState(promise) {
     promise.then((response) => {
-        if (!(response && response.json)) {
-          return response;
-        } else if (response.json) {
-          return response.json();
-        } else {
-          sessionStorage.removeItem('TS_API');
-          throw new Error('Error: could not find a valid data source');
-        }
-      })
+      if (!(response && response.json)) {
+        return response;
+      } else if (response.json) {
+        return response.json();
+      }
+      sessionStorage.removeItem('TS_API');
+      throw new Error('Error: could not find a valid data source');
+    })
       .catch((err) => {
         this.state.errors.push(err);
       })
-      .then(function(data) {
+      .then((data) => {
         let rates = [],
-            { date } = data;
+          { date } = data;
 
-        for (var key in data.rates) {
+        for (const key in data.rates) {
           rates.push({
             currency: key,
             iso: (key || '').substr(0, 2).toLowerCase(),
             rate: data.rates[key],
           });
-        };
+        }
 
         if (!sessionStorage.getItem('TS_API')) {
           sessionStorage.setItem('TS_API', JSON.stringify(data));
         }
 
-        return new Promise((resolve, reject) => {
-          return setTimeout(() => {
-            let from = {
-              currency: data.base,
-              rate: 1,
-              iso: (data.base || '').substr(0, 2).toLowerCase(),
-            };
+        return new Promise((resolve, reject) => setTimeout(() => {
+          const from = {
+            currency: data.base,
+            rate: 1,
+            iso: (data.base || '').substr(0, 2).toLowerCase(),
+          };
 
-            rates.push(Object.assign({}, from));
+          rates.push(Object.assign({}, from));
 
-            from.amount = 1;
-            let to = Object.assign({}, from);
+          from.amount = 1;
+          const to = Object.assign({}, from);
 
-            from.setup = new this.CreateSetupAttr(
-              'You wanto to convert:',
-              true,
-              'from',
-              from.iso
-            );
+          from.setup = new this.CreateSetupAttr(
+            'You wanto to convert:',
+            true,
+            'from',
+            from.iso,
+          );
 
-            to.setup = new this.CreateSetupAttr(
-              'To this amount:',
-              false,
-              'to',
-              to.iso
-            );
+          to.setup = new this.CreateSetupAttr(
+            'To this amount:',
+            false,
+            'to',
+            to.iso,
+          );
 
-            const newState = { rates, date, from, to };
-            this.setState(newState, this.agnosticFromAndToLog);
+          const newState = { rates, date, from, to };
+          this.setState(newState, this.agnosticFromAndToLog);
 
-            return resolve(true);
-          }, 0);
-        }).then(function(something) {
+          return resolve(true);
+        }, 0)).then(() => {
           let specTo = Object.assign({}, this.getUSDRate(this.state.rates));
 
           if (!specTo) {
@@ -126,10 +123,10 @@ class Conversor extends React.Component {
 
           specTo.setup = Object.assign({}, this.state.to.setup);
           specTo.amount = null;
-          let newToSpec = Object.assign({}, this.getConvertedSpec.call(this, specTo));
+          const newToSpec = Object.assign({}, this.getConvertedSpec.call(this, specTo));
           return this.setState({ to: newToSpec }, this.agnosticFromAndToLog);
-        }.bind(this));
-    }.bind(this));
+        });
+      });
   }
 
   componentDidMount() {
@@ -148,7 +145,7 @@ class Conversor extends React.Component {
     const { currency, rate } = spec;
     const { mode } = spec.setup;
     const invertedMode = this.invertMode(mode);
-    let selected = Object.assign({}, this.state[mode]);
+    const selected = Object.assign({}, this.state[mode]);
 
     selected.amount = null;
     selected.currency = currency;
@@ -161,46 +158,46 @@ class Conversor extends React.Component {
     const { amount, currency, rate } = spec;
     const { mode, iso } = spec.setup;
     const invertedMode = this.invertMode(mode);
-    let selected = this.state[mode];
+    const selected = this.state[mode];
 
     selected.amount = amount;
     selected.currency = currency;
     selected.rate = rate;
     selected.iso = iso;
 
-    let specs = this.convert(selected, this.state[invertedMode]);
+    const specs = this.convert(selected, this.state[invertedMode]);
     this.setState({ specs }, this.agnosticFromAndToLog);
   }
 
   justConvert(outdatedSpec, updatedSpec) {
-    let outdatedMode = outdatedSpec.setup.mode;
-    let method = `convertThe${capitalize(outdatedMode)}Field`;
-    let toReturn = Object.assign({}, outdatedSpec);
+    const outdatedMode = outdatedSpec.setup.mode;
+    const method = `convertThe${capitalize(outdatedMode)}Field`;
+    const toReturn = Object.assign({}, outdatedSpec);
     toReturn.amount = this[method](outdatedSpec, updatedSpec);
     return toReturn;
   }
 
   convert(iOutdatedSpec, iUpdatedSpec) {
-    let iOutdatedMode = iOutdatedSpec.setup.mode;
-    let iUpdatedMode = iUpdatedSpec.setup.mode;
+    const iOutdatedMode = iOutdatedSpec.setup.mode;
+    const iUpdatedMode = iUpdatedSpec.setup.mode;
 
-    let specs = {
+    const specs = {
       [iOutdatedMode]: iOutdatedSpec,
-      [iUpdatedMode]: iUpdatedSpec
+      [iUpdatedMode]: iUpdatedSpec,
     };
 
-    let {
+    const {
       outdatedMode,
-      updatedMode
+      updatedMode,
     } = memory.getUpdatedAndOutdatedModes.call(this, specs);
 
-    let outdatedSpec = specs[outdatedMode];
-    let updatedSpec = specs[updatedMode];
+    const outdatedSpec = specs[outdatedMode];
+    const updatedSpec = specs[updatedMode];
 
     outdatedSpec.setup.mode = outdatedMode;
     updatedSpec.setup.mode = updatedMode;
 
-    let method = `convertThe${capitalize(outdatedMode)}Field`;
+    const method = `convertThe${capitalize(outdatedMode)}Field`;
     outdatedSpec.amount = this[method](outdatedSpec, updatedSpec);
 
     return {
@@ -217,8 +214,8 @@ class Conversor extends React.Component {
     } else {
       log = {
         from: Object.assign({}, this.state.from),
-        to: Object.assign({}, this.state.to)
-      }
+        to: Object.assign({}, this.state.to),
+      };
     }
 
     memory.save.call(this, log);
@@ -253,7 +250,7 @@ class Conversor extends React.Component {
   }
 
   invertMode(mode) {
-    let modes = ['from', 'to'];
+    const modes = ['from', 'to'];
     modes.splice(modes.indexOf(mode), 1);
     return modes[0];
   }
@@ -283,6 +280,6 @@ class Conversor extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default Conversor;

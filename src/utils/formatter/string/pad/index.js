@@ -1,11 +1,12 @@
-const pad = function (number, width, filling) {
-  number += '';
-  width = width || 2;
-  filling = filling || '0';
+const pad = (number, width = 2, filling = '0') => {
+  const numberStr = `${number}`;
 
-  return number.length >= width ?
-    number :
-    new Array(width - number.length + 1).join(filling) + number;
+  if (numberStr.length >= width) {
+    return number;
+  }
+
+  const padding = new Array((width - numberStr.length) + 1).join(filling);
+  return `${padding}${numberStr}`;
 };
 
 export default pad;

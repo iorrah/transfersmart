@@ -46,10 +46,10 @@ const SelectRateOption = createClass({
         </span>
 
         <span
-          className={'Select-flag'
+          className={`${'Select-flag'
             + ' flag-icon'
-            + ' flag-icon-'
-            + this.props.option.iso }
+            + ' flag-icon-'}${
+            this.props.option.iso}`}
         />
       </div>
     );
@@ -72,10 +72,10 @@ const SelectRateValue = createClass({
           </span>
 
           <span
-            className={'Select-flag'
+            className={`${'Select-flag'
               + ' flag-icon'
-              + ' flag-icon-'
-              + this.props.value.iso }
+              + ' flag-icon-'}${
+              this.props.value.iso}`}
           />
         </span>
       </div>
@@ -102,7 +102,7 @@ const SelectRate = createClass({
       name,
       onChange,
       onFocusSelectRate,
-      onBlurSelectRate, } = this.props;
+      onBlurSelectRate } = this.props;
 
     const arrowRenderer = () => {
       if (disabled) {

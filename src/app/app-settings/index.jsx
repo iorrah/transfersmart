@@ -5,7 +5,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const AppSettings = {
-  base_name: baseName
+  base_name: baseName,
 };
 
 export default AppSettings;

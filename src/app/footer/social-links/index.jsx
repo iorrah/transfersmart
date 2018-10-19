@@ -4,7 +4,7 @@ import {
   FaGithub,
   FaSquare,
   FaBalanceScale,
-  FaCodeFork, } from 'react-icons/lib/fa';
+  FaCodeFork } from 'react-icons/lib/fa';
 
 class SocialLinks extends React.Component {
   liItem(href, title, icon) {
@@ -40,7 +40,7 @@ class SocialLinks extends React.Component {
           <FaCodeFork />) }
       </ul>
     );
-  };
-};
+  }
+}
 
 export default SocialLinks;
