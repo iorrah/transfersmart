@@ -35,6 +35,26 @@ class Conversor extends React.Component {
     this.agnosticFromAndToLog = this.agnosticFromAndToLog.bind(this);
   }
 
+  getUSDRate(rates) {
+    const rate = rates.find((e) => e.currency === 'USD');
+
+    if (rate && rate.iso && rate.rate) {
+      return rate;
+    }
+
+    return null;
+  }
+
+  getEURRate(rates) {
+    const rate = rates.find((e) => e.currency === 'EUR');
+
+    if (rate && rate.iso && rate.rate) {
+      return rate;
+    }
+
+    return null;
+  }
+
   setInitialState(promise) {
     promise.then((response) => {
         if (!(response && response.json)) {
@@ -98,7 +118,12 @@ class Conversor extends React.Component {
             return resolve(true);
           }, 0);
         }).then(function(something) {
-          let specTo = Object.assign({}, this.state.rates[0]);
+          let specTo = Object.assign({}, this.getUSDRate(this.state.rates));
+
+          if (!specTo) {
+            specTo = Object.assign({}, this.getEURRate(this.state.rates));
+          }
+
           specTo.setup = Object.assign({}, this.state.to.setup);
           specTo.amount = null;
           let newToSpec = Object.assign({}, this.getConvertedSpec.call(this, specTo));
